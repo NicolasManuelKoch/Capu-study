@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Join the Study – Honours Study</title>
+  <meta name="description" content="Provide contact info and consent to be contacted about participating in the Honours study." />
+  <meta name="theme-color" content="#0b1020" />
+  <style>
+    :root {
+      --bg: #0b1020;
+      --card: #121832;
+      --text: #e9ecf5;
+      --muted: #b6bed6;
+      --accent: #7aa2ff;
+      --accent-2: #4de1c1;
+      --radius: 18px;
+      --shadow: 0 8px 24px rgba(8, 12, 28, 0.4);
+      --focus: 3px solid rgba(122,162,255,0.6);
+      --maxw: 820px;
+      --padX: clamp(14px, 3.5vw, 24px);
+      --padY: clamp(12px, 2.8vw, 18px);
+      --btn-min: 44px;
+      --fontScale: 1;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { height: 100%; -webkit-text-size-adjust: 100%; }
+    body { margin:0; height:100%; font-family: system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans"; font-size: calc(clamp(16px, 0.9rem + 0.2vw, 18px) * var(--fontScale)); line-height:1.6; color:var(--text); background: radial-gradient(1200px 800px at 10% 0%, #111a3d 0%, var(--bg) 55%); }
+    .wrap { max-width: var(--maxw); margin: 0 auto; padding: var(--padY) var(--padX); }
+    header { position: sticky; top:0; z-index:10; backdrop-filter: saturate(140%) blur(6px); background: rgba(11,16,32,0.6); border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .brand { display:flex; align-items:center; gap:10px; font-weight:700; font-size: clamp(1rem, 0.95rem + 0.7vw, 1.15rem); }
+    .brand .dot { width:10px; height:10px; border-radius:50%; background: linear-gradient(135deg, var(--accent), var(--accent-2)); box-shadow: 0 0 0 3px rgba(122,162,255,0.22); }
+    .card { background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02)); border: 1px solid rgba(255,255,255,0.12); border-radius: var(--radius); box-shadow: var(--shadow); overflow:hidden; }
+    .content { padding: clamp(16px, 3vw, 22px); }
+    .btn { display:inline-flex; align-items:center; justify-content:center; gap:8px; padding:12px 16px; border-radius:999px; border:1px solid rgba(255,255,255,0.12); background: rgba(255,255,255,0.04); color: var(--text); cursor:pointer; box-shadow: var(--shadow); min-height: var(--btn-min); text-decoration: none; }
+    .btn.primary { background: linear-gradient(135deg, var(--accent), var(--accent-2)); color:#081423; border:none; font-weight:700; }
+    .row { display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
+    h1 { font-size: clamp(1.3rem, 1.05rem + 1.8vw, 1.8rem); margin: 0 0 10px; }
+    p.note { color: var(--muted); margin: 0 0 14px; }
+
+    form { display:grid; gap:12px; }
+    .field { display:grid; gap:6px; }
+    .label-row { display:flex; align-items:center; justify-content:space-between; gap:8px; }
+    label { font-weight:600; }
+    .hint { color: var(--muted); font-size:0.92rem; }
+    input[type="email"], input[type="tel"], input[type="text"], textarea { width:100%; background: rgba(255,255,255,0.06); color: var(--text); border:1px solid rgba(255,255,255,0.16); border-radius:12px; padding:12px 14px; }
+    input::placeholder, textarea::placeholder { color:#c9d2ef88; }
+    .consent { display:flex; align-items:flex-start; gap:10px; }
+    .status { min-height:1.25em; color: var(--muted); }
+    footer { border-top: 1px solid rgba(255,255,255,0.08); color: var(--muted); padding: 18px var(--padX) 56px; }
+
+    /* Safe-area for iPhone */
+    @supports (padding: max(0px)) {
+      body   { padding-bottom: max(0px, env(safe-area-inset-bottom)); }
+      header { padding-top:    max(0px, env(safe-area-inset-top)); }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap" style="display:flex; align-items:center; justify-content:space-between; gap:12px;">
+      <div class="brand"><div class="dot" aria-hidden="true"></div><div>Honours Study</div></div>
+      <nav class="row">
+        <a class="btn" href="index.html">Back to Study Page</a>
+        <!-- The Large Text toggle button will be injected by script -->
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="card">
+      <div class="content">
+        <h1>Join the Study</h1>
+        <p class="note">Please provide <strong>either</strong> your email <strong>or</strong> your phone number so we can contact you. You must also check the consent box below to confirm we may contact you for the purposes of this study.</p>
+
+        <form id="signupForm" action="https://formspree.io/f/YOUR_ID" method="POST" novalidate>
+          <input type="hidden" name="_subject" value="Honours Study – New Sign-up" />
+          <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;opacity:0;" aria-hidden="true" />
+          <input type="hidden" name="source" value="honours-join-page" />
+
+          <div class="field">
+            <div class="label-row">
+              <label for="email">Email address</label>
+              <span class="hint">Optional if you provide a phone number</span>
+            </div>
+            <input id="email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="you@example.com" aria-describedby="emailHint" />
+            <div id="emailHint" class="visually-hidden">Enter a valid email address.</div>
+          </div>
+
+          <div class="field">
+            <div class="label-row">
+              <label for="phone">Phone number</label>
+              <span class="hint">Optional if you provide an email</span>
+            </div>
+            <input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="(555) 555-5555" aria-describedby="phoneHint" />
+            <div id="phoneHint" class="visually-hidden">Enter a phone number we can reach you at.</div>
+          </div>
+
+          <div class="field">
+            <div class="label-row">
+              <label for="message">Comment or question (optional)</label>
+              <span class="hint">Add any note you want us to see</span>
+            </div>
+            <textarea id="message" name="message" rows="4" placeholder="E.g., preferred contact time, accessibility needs, or a quick question..."></textarea>
+          </div>
+
+          <div class="field consent">
+            <input id="consent" name="consent" type="checkbox" required aria-describedby="consentText consentReq" />
+            <label for="consent" id="consentText">I consent to being contacted for the purposes of this research study via the email address and/or phone number I provide.</label>
+          </div>
+
+          <div id="formMsg" class="status" aria-live="polite"></div>
+
+          <div class="row" style="margin-top:8px;">
+            <button type="submit" class="btn primary" id="submitBtn" disabled>Submit</button>
+            <a class="btn" href="index.html">Back</a>
+          </div>
+
+          <p class="note" style="margin-top:6px;">By submitting, you agree that we may store this contact information securely and use it only to coordinate your participation. You can withdraw consent at any time by emailing <a href="mailto:nicolaskoch@my.capilanou.ca">nicolaskoch@my.capilanou.ca</a>.</p>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap">© <span id="y"></span> CapU Honours Study</div>
+  </footer>
+
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    // --- Sign-up validation (email OR phone) + consent ---
+    const form = document.getElementById('signupForm');
+    const email = document.getElementById('email');
+    const phone = document.getElementById('phone');
+    const consent = document.getElementById('consent');
+    const msg = document.getElementById('formMsg');
+    const submitBtn = document.getElementById('submitBtn');
+
+    function validate() {
+      const hasEmail = email.value.trim().length > 0;
+      const hasPhone = phone.value.trim().length > 0;
+      const consented = consent.checked;
+      const emailOK = !hasEmail || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim());
+      const phoneOK = !hasPhone || /[0-9]{6,}/.test(phone.value.replace(/\D/g, ''));
+
+      let problems = [];
+      if (!(hasEmail || hasPhone)) problems.push('Provide either an email or a phone number.');
+      if (hasEmail && !emailOK) problems.push('Enter a valid email address.');
+      if (hasPhone && !phoneOK) problems.push('Enter a valid phone number.');
+      if (!consented) problems.push('You must check the consent box.');
+
+      if (problems.length) {
+        submitBtn.disabled = true;
+        msg.textContent = problems.join(' ');
+      } else {
+        submitBtn.disabled = false;
+        msg.textContent = 'Looks good — you can submit.';
+      }
+    }
+
+    ['input','change'].forEach(evt => { email.addEventListener(evt, validate); phone.addEventListener(evt, validate); consent.addEventListener(evt, validate); });
+    validate();
+
+    form.addEventListener('submit', () => {
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending…';
+      msg.textContent = 'Submitting…';
+    });
+
+    // Large Text toggle (persists) for join page
+    (function(){
+      const LS_KEY='largeText';
+      function setScale(on){
+        try{ localStorage.setItem(LS_KEY, on?'1':'0'); }catch(e){}
+        document.documentElement.style.setProperty('--fontScale', on? '1.18' : '1');
+        const b=document.getElementById('textToggle'); if(b){ b.setAttribute('aria-pressed', on?'true':'false'); }
+      }
+      let initial=false; try{ initial = (localStorage.getItem(LS_KEY)==='1'); }catch(e){}
+      setScale(initial);
+      const nav=document.querySelector('header nav');
+      if(nav && !document.getElementById('textToggle')){
+        const btn=document.createElement('button');
+        btn.className='btn'; btn.type='button'; btn.id='textToggle';
+        btn.setAttribute('aria-label','Toggle large text'); btn.setAttribute('aria-pressed', initial?'true':'false');
+        btn.textContent='A\u00A0A';
+        nav.appendChild(btn);
+        btn.addEventListener('click', function(){ setScale(!(localStorage.getItem(LS_KEY)==='1')); });
+      }
+    })();
+  </script>
+</body>
+</html>
