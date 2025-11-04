@@ -30,7 +30,7 @@
     *, *::before, *::after { box-sizing: border-box; }
     html { height: 100%; -webkit-text-size-adjust: 100%; }
     body {
-      margin: 0; height: 100%;
+      margin: 0; min-height: 100%;
       font-family: system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
       font-size: calc(clamp(16px, 0.9rem + 0.2vw, 18px) * var(--fontScale));
       line-height: 1.55; color: var(--text);
@@ -57,10 +57,6 @@
     .video-shell video, .video-shell iframe { width: 100%; height: 100%; display: block; }
     .video-caption { color: var(--muted); font-size: 0.95rem; text-align: center; margin: 10px auto 0; max-width: 70ch; padding: 0 var(--padX); }
 
-    .info { padding: 20px var(--padX) 56px; }
-    .grid { display: grid; gap: 18px; grid-template-columns: 1fr; align-items: start; }
-    @media (min-width: 860px) { .grid { gap: 24px; grid-template-columns: 1.15fr 0.85fr; align-items: start; } }
-
     h1 { font-size: clamp(1.5rem, 1.15rem + 2.5vw, 2.4rem); margin: 0 0 8px; letter-spacing: 0.2px; }
     h2 { font-size: clamp(1.1rem, 1rem + 1.2vw, 1.5rem); margin: 0 0 10px; }
     p.lead { color: var(--muted); margin: 0 0 14px; }
@@ -68,75 +64,18 @@
     li { margin-bottom: 10px; }
 
     .bio-card { padding: clamp(16px, 3vw, 22px); }
-    .headshot { width: 100%; border-radius: var(--radius); border: 1px solid rgba(255,255,255,0.12); box-shadow: var(--shadow); object-fit: cover; max-height: 520px; }
+
+    /* Centered narrow container for About box */
+    .centered-narrow { max-width: 860px; margin: 10px auto 0; }
 
     .footer { border-top: 1px solid rgba(255,255,255,0.08); color: var(--muted); padding: 18px var(--padX) 56px; }
     .fine { font-size: 0.92rem; }
     .badge { display: inline-block; padding: 6px 10px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.14); font-size: 0.85rem; color: var(--muted); }
     .spacer { height: 8px; }
 
-    /* Simple hash-router visibility */
-    .page { display: none; }
-    .page.active { display: block; }
-
-    /* Tappable-only tweaks */
-    @media (hover: none) and (pointer: coarse) {
-      .btn { padding: 14px 18px; }
-      .brand .dot { width: 12px; height: 12px; }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      * { scroll-behavior: auto !important; }
-      header { backdrop-filter: none; }
-    }
-
-    /* Notice toast */
-    .toast {
-      position: fixed; left: 50%; bottom: 18px; transform: translateX(-50%);
-      background: #1b234a; color: var(--text); border: 1px solid rgba(255,255,255,0.14);
-      padding: 10px 14px; border-radius: 999px; box-shadow: var(--shadow);
-      font-size: 0.95rem; opacity: 0; pointer-events: none; transition: opacity .25s ease;
-      z-index: 1000;
-    }
-  </style>
-
-  <!-- Mobile enhancements: iPhone safe area -->
-  <style id="mobileEnhancements">
-    @supports (padding: max(0px)) {
-      body   { padding-bottom: max(0px, env(safe-area-inset-bottom)); }
-      header { padding-top:    max(0px, env(safe-area-inset-top)); }
-    }
-  </style>
-
-  <!-- Password gate styles -->
-  <style>
-    #gate { position: fixed; inset: 0; display: grid; place-items: center; background: radial-gradient(1200px 800px at 10% 0%, #111a3d 0%, #0b1020 55%); z-index: 2000; }
-    #gate .panel { width: min(520px, 92vw); background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02)); border: 1px solid rgba(255,255,255,0.14); border-radius: 18px; box-shadow: 0 8px 24px rgba(8, 12, 28, 0.4); padding: 20px; color: #e9ecf5; }
-    #gate h1 { margin: 0 0 8px; font-size: clamp(1.15rem, 1rem + 1.2vw, 1.6rem); }
-    #gate p { margin: 0 0 12px; color: #b6bed6; }
-    #gate form { display: flex; gap: 10px; align-items: center; }
-    #gate input[type="password"] { flex: 1; min-height: 44px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.16); background: rgba(255,255,255,0.06); color: #e9ecf5; padding: 10px 12px; }
-    #gate button { min-height: 44px; border-radius: 999px; border: none; padding: 10px 16px; font-weight: 700; cursor: pointer; background: linear-gradient(135deg, #7aa2ff, #4de1c1); color: #081423; }
-    #gate .err { margin-top: 10px; color: #ff9aa2; font-size: 0.95rem; min-height: 1.2em; }
-
-    /* When locked, hide everything except the gate */
-    html[data-locked="1"] body > :not(#gate) { display: none !important; }
-    html[data-locked="0"] #gate { display: none !important; }
-  </style>
-
-  <!-- Bottom horizontal strip styles -->
-  <style>
     /* Bottom horizontal strip for researcher + supervisor */
-    .team-strip {
-      margin: 22px auto 0;
-      padding: 18px var(--padX);
-      max-width: var(--maxw);
-    }
-    .team-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-      align-items: start;
-    }
+    .team-strip { margin: 22px auto 0; padding: 18px var(--padX); max-width: var(--maxw); }
+    .team-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; align-items: start; }
     .person {
       background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
       border: 1px solid rgba(255,255,255,0.12);
@@ -155,19 +94,46 @@
       display: block;
       margin: 6px auto 10px;
     }
-    .person h3 {
-      margin: 4px 0 6px;
-      font-size: clamp(1.05rem, 1rem + 0.8vw, 1.25rem);
-    }
-    .person p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 0.98rem;
-    }
-    /* Stack on small screens */
+    .person h3 { margin: 4px 0 6px; font-size: clamp(1.05rem, 1rem + 0.8vw, 1.25rem); }
+    .person p  { margin: 0; color: var(--muted); font-size: 0.98rem; }
+
+    /* Phone tweaks */
     @media (max-width: 720px) {
       .team-row { grid-template-columns: 1fr; }
+      header { position: sticky; }
     }
+    @media (hover: none) and (pointer: coarse) {
+      .btn { padding: 14px 18px; }
+      .brand .dot { width: 12px; height: 12px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      * { scroll-behavior: auto !important; }
+      header { backdrop-filter: none; }
+    }
+  </style>
+
+  <!-- iPhone safe area -->
+  <style id="mobileEnhancements">
+    @supports (padding: max(0px)) {
+      body   { padding-bottom: max(0px, env(safe-area-inset-bottom)); }
+      header { padding-top:    max(0px, env(safe-area-inset-top)); }
+    }
+  </style>
+
+  <!-- Password gate styles -->
+  <style>
+    #gate { position: fixed; inset: 0; display: grid; place-items: center; background: radial-gradient(1200px 800px at 10% 0%, #111a3d 0%, #0b1020 55%); z-index: 2000; }
+    #gate .panel { width: min(520px, 92vw); background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02)); border: 1px solid rgba(255,255,255,0.14); border-radius: 18px; box-shadow: 0 8px 24px rgba(8, 12, 28, 0.4); padding: 20px; color: #e9ecf5; }
+    #gate h1 { margin: 0 0 8px; font-size: clamp(1.15rem, 1rem + 1.2vw, 1.6rem); }
+    #gate p  { margin: 0 0 12px; color: #b6bed6; }
+    #gate form { display: flex; gap: 10px; align-items: center; }
+    #gate input[type="password"] { flex: 1; min-height: 44px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.16); background: rgba(255,255,255,0.06); color: #e9ecf5; padding: 10px 12px; }
+    #gate button { min-height: 44px; border-radius: 999px; border: none; padding: 10px 16px; font-weight: 700; cursor: pointer; background: linear-gradient(135deg, #7aa2ff, #4de1c1); color: #081423; }
+    #gate .err { margin-top: 10px; color: #ff9aa2; font-size: 0.95rem; min-height: 1.2em; }
+
+    /* When locked, hide everything except the gate */
+    html[data-locked="1"] body > :not(#gate) { display: none !important; }
+    html[data-locked="0"] #gate { display: none !important; }
   </style>
 </head>
 <body>
@@ -195,6 +161,7 @@
       </div>
       <nav aria-label="Primary" style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
         <a class="btn primary" href="join.html" id="joinLink" aria-label="Join the study">Join the Study</a>
+        <!-- Mobile-only quick dial -->
         <a class="btn" href="tel:+1236..." aria-label="Call the researcher" style="display:none;" id="callBtn">Call</a>
       </nav>
     </div>
@@ -221,52 +188,46 @@
       </div>
     </section>
 
-    <div class="wrap" style="max-width:980px; margin: 10px auto 0;">
+    <!-- Centered About box -->
+    <div class="wrap centered-narrow">
       <div class="card bio-card" aria-label="Key details">
         <h2 id="homeTitle">Expected Start Date</h2>
-        <ul>
-          <li>Beginning of March 2026</li>
-        </ul>
+        <ul><li>Beginning of March 2026</li></ul>
         <h2>Duration</h2>
         <ul><li>4 weeks</li></ul>
         <h2>What to Expect</h2>
         <ul>
           <li>Brief onboarding call, or email, to answer questions and confirm eligibility.</li>
           <li>Daily conversation with a voice-based chatbot or recording a daily audio diary (we will assign which one), min. 5 minutes.</li>
-          <li>Short survey and cognitive tests (10-15 minutes) at the start and end of the study, and two additional 5-10 minute surveys in between.</li>
+          <li>Short survey and cognitive tests (10–15 minutes) at the start and end of the study, and two additional 5–10 minute surveys in between.</li>
         </ul>
 
         <h2 style="margin-top:12px;">Ethics & Consent</h2>
         <p class="lead">This research has been reviewed and approved by the Capilano University Research Ethics Board (REB #______ ). Participation is voluntary and you may withdraw at any time without penalty.</p>
         <div class="cta-row" style="margin-top:6px;">
-          <a class="btn" href="flyer.pdf" download="CapU-Honours-Study-Flyer.pdf" id="piBtn" aria-label="Download the participant information sheet (PDF)">
-            Participant Information (PDF)
-          </a>
+          <a class="btn" href="flyer.pdf" download="CapU-Honours-Study-Flyer.pdf" id="piBtn" aria-label="Download the participant information sheet (PDF)">Participant Information (PDF)</a>
         </div>
       </div>
     </div>
 
-    <section id="details" class="info wrap">
-      <div class="grid">
-        <article class="card bio-card" aria-labelledby="aboutTitle">
-          <h1 id="aboutTitle">About the Study</h1>
-          <ul>
-            <li>Research Supervisor: Dr. Lesley Schimanski</li>
-            <li>Research Focus: impact of technological talk intervention</li>
-            <li>Study purpose: test how brief, daily audio diaries or voice chatbot interaction can impact a population of adults 65+</li>
-            <li>Time commitment: minimum of <strong>5 minutes/day</strong> for <strong>4 weeks</strong> and ~<strong>10 minutes</strong> each week (4×) for <strong>surveys</strong> and <strong>tasks</strong></li>
-            <li>Eligibility: <strong>English</strong> speaking adults <strong>65+</strong> who live <strong>alone</strong> with access to a <strong>smartphone</strong> and <strong>internet</strong></li>
-            <li>Compensation: <strong>digital certificate</strong> and <strong>“Thank You” video</strong></li>
-            <li>Privacy: participation is <strong>voluntary</strong>; you can <strong>withdraw anytime</strong>; talk data stored on <strong>US servers</strong>; all other data stored safely on <strong>Canadian servers</strong></li>
-            <li>Contact: <a href="mailto:nicolaskoch@my.capilanou.ca">nicolaskoch@my.capilanou.ca</a> · <a href="tel:+12368084099">(236)808-4099</a></li>
-          </ul>
+    <section id="details" class="wrap centered-narrow" aria-labelledby="aboutTitle">
+      <article class="card bio-card">
+        <h1 id="aboutTitle">About the Study</h1>
+        <ul>
+          <li>Research Supervisor: Dr. Lesley Schimanski</li>
+          <li>Research Focus: impact of technological talk intervention</li>
+          <li>Study purpose: test how brief, daily audio diaries or voice chatbot interaction can impact a population of adults 65+</li>
+          <li>Time commitment: minimum of <strong>5 minutes/day</strong> for <strong>4 weeks</strong> and ~<strong>10 minutes</strong> each week (4×) for <strong>surveys</strong> and <strong>tasks</strong></li>
+          <li>Eligibility: <strong>English</strong> speaking adults <strong>65+</strong> who live <strong>alone</strong> with access to a <strong>smartphone</strong> and <strong>internet</strong></li>
+          <li>Compensation: <strong>digital certificate</strong> and <strong>“Thank You” video</strong></li>
+          <li>Privacy: participation is <strong>voluntary</strong>; you can <strong>withdraw anytime</strong>; talk data stored on <strong>US servers</strong>; all other data stored safely on <strong>Canadian servers</strong></li>
+          <li>Contact: <a href="mailto:nicolaskoch@my.capilanou.ca">nicolaskoch@my.capilanou.ca</a> · <a href="tel:+12368084099">(236)808-4099</a></li>
+        </ul>
 
-          <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap;">
-            <a class="btn primary" href="join.html" aria-label="Join the Study from About section">Join the Study</a>
-          </div>
-        </article>
-        <!-- (Sidebar removed to move photos to bottom strip) -->
-      </div>
+        <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap; justify-content:center;">
+          <a class="btn primary" href="join.html" aria-label="Join the Study from About section">Join the Study</a>
+        </div>
+      </article>
     </section>
   </main>
 
@@ -275,75 +236,19 @@
     <div class="team-row">
       <!-- Researcher -->
       <div class="person" aria-label="Researcher profile">
-        <img
-          class="headshot"
-          src="headshot.jpg"
-          alt="Photo of researcher Nicolas M. Koch"
-          loading="lazy"
-          decoding="async"
-        >
-        <h3>Researcher: Nicolas M. Koch</h3>
+        <img class="headshot" src="headshot.jpg" alt="Photo of researcher Nicolas M. Koch" loading="lazy" decoding="async">
+        <h3>The Researcher: Nicolas M. Koch</h3>
         <p>Honours B.A. Psychology student at <strong>Capilano University</strong>.</p>
       </div>
 
       <!-- Supervisor -->
       <div class="person" aria-label="Supervisor profile">
-        <img
-          class="headshot"
-          src="supervisor.jpg"
-          alt="Photo of research supervisor Dr. Lesley Schimanski"
-          loading="lazy"
-          decoding="async"
-        >
+        <img class="headshot" src="supervisor.jpg" alt="Photo of research supervisor Dr. Lesley Schimanski" loading="lazy" decoding="async">
         <h3>Research Supervisor: Dr. Lesley Schimanski</h3>
-        <p>Supervising the Technological Talk Impact study at <strong>Capilano University</strong>.</p>
+        <p>Supervising the Technological Talk Impact study at CapU.</p>
       </div>
     </div>
   </section>
-
-  <!-- APP INSTRUCTIONS PAGE -->
-  <main id="app" class="page" aria-labelledby="appTitle">
-    <section class="wrap">
-      <div class="card bio-card" style="padding:16px;">
-        <div class="cta-row" style="justify-content:space-between; align-items:center; margin-bottom:8px;">
-          <h1 id="appTitle" style="margin:6px 0;">How to get started with the ChatGPT app</h1>
-          <a class="btn" href="#" aria-label="Go back to the previous page">← Back</a>
-        </div>
-
-        <div class="video-shell" style="margin-bottom:8px;">
-          <video controls preload="metadata" poster="chatgpt-app-poster.jpg" playsinline webkit-playsinline aria-describedby="appCaption">
-            <source src="chatgpt-app-instructions.mp4" type="video/mp4" />
-            Sorry, your browser doesn’t support embedded videos.
-          </video>
-        </div>
-        <p id="appCaption" class="video-caption">
-          This short video shows how to open the App Store/Play Store, find <em>ChatGPT</em>, and install it.
-        </p>
-
-        <div class="cta-row" style="margin-top:10px; flex-wrap:wrap;">
-          <a class="btn primary" href="https://apps.apple.com/us/app/chatgpt/id6448311069" target="_blank" rel="noopener" aria-label="Open in the Apple App Store">Open in App Store (iPhone/iPad)</a>
-          <a class="btn primary" href="https://play.google.com/store/apps/details?id=com.openai.chatgpt" target="_blank" rel="noopener" aria-label="Open in Google Play (Android)">Open in Google Play (Android)</a>
-        </div>
-
-        <div class="card" style="margin-top:14px; padding:14px;">
-          <h2 style="margin:6px 0 8px;">Quick steps (written)</h2>
-          <ol style="margin:0; padding-left:18px;">
-            <li>Open the <strong>App Store</strong> (iPhone/iPad) or <strong>Google Play</strong> (Android).</li>
-            <li>Search for <strong>“ChatGPT”</strong> and confirm the publisher is <strong>OpenAI</strong>.</li>
-            <li>Tap <strong>Get</strong> / <strong>Install</strong>.</li>
-            <li>Open the app, and <strong>Sign up</strong> or <strong>Log in</strong>.</li>
-            <li>Follow the instructions in the video to sign up and start your first chat.</li>
-          </ol>
-          <p class="lead" style="margin-top:10px;">If you need help, call us at <a href="tel:+12368084099">(236)808-4099</a> and we’ll walk you through it.</p>
-        </div>
-
-        <div class="cta-row" style="margin-top:14px;">
-          <a class="btn" href="#" aria-label="Back to home">← Back to Home</a>
-          <a class="btn primary" href="join.html" aria-label="Proceed to join the study">I’m ready — Join the Study</a>
-        </div>
-      </div>
-    </section>
-  </main>
 
   <footer class="footer">
     <div class="wrap" style="display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;">
@@ -352,24 +257,22 @@
     </div>
   </footer>
 
-  <div id="toast" class="toast" role="status" aria-live="polite" aria-atomic="true"></div>
-
   <script>
-    // Set dynamic year
+    // Dynamic year
     document.getElementById('y').textContent = new Date().getFullYear();
 
-    // Smooth scroll for internal sections on HOME page (but not the app page)
+    // Smooth scroll for internal sections on HOME page
     document.querySelectorAll('#home a[href^="#"]').forEach(a => {
       a.addEventListener('click', e => {
         const href = a.getAttribute('href');
-        if (href && href.length > 1 && href !== '#app') {
+        if (href && href.length > 1) {
           const el = document.querySelector(href);
           if (el) { e.preventDefault(); el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
         }
       });
     });
 
-    // Mobile-only quick dial appears if small viewport / touch
+    // Mobile-only quick dial appears if touch device
     const callBtn = document.getElementById('callBtn');
     const isCoarse = matchMedia('(hover: none) and (pointer: coarse)').matches;
     if (isCoarse) callBtn.style.display = 'inline-flex';
@@ -402,7 +305,7 @@
       const filePath = 'flyer.pdf';
       const fileName = 'CapU-Honours-Study-Flyer.pdf';
       btn.addEventListener('click', async function(e){
-        if ('download' in HTMLAnchorElement.prototype) return;
+        if ('download' in HTMLAnchorElement.prototype) return; // native support
         e.preventDefault();
         try {
           const res = await fetch(filePath, { cache: 'no-store' });
@@ -418,70 +321,8 @@
         }
       });
     })();
-
-    /* -------------------------------
-       Direct-link-only access to #app
-       ------------------------------- */
-    const INIT_HASH = (location.hash || '').replace('#','').trim();
-    const DIRECT_LINKED_TO_APP = INIT_HASH === 'app';
-
-    const PAGES = ['home','app'];
-    const toastEl = document.getElementById('toast');
-    function showToast(msg){
-      if(!toastEl) return;
-      toastEl.textContent = msg;
-      toastEl.classList.add('show');
-      clearTimeout(showToast._t);
-      showToast._t = setTimeout(()=> toastEl.classList.remove('show'), 2600);
-    }
-
-    function showPage(id){
-      PAGES.forEach(pid => {
-        const el = document.getElementById(pid);
-        if (el) el.classList.toggle('active', pid === id);
-      });
-      const baseTitle = 'Honours Study – Participant Information';
-      document.title = (id === 'app')
-        ? 'How to get started with the ChatGPT app – Honours Study'
-        : baseTitle;
-      window.scrollTo({ top: 0, behavior: 'instant' in window ? 'instant' : 'auto' });
-      const pageEl = document.getElementById(id);
-      if (pageEl) pageEl.setAttribute('tabindex','-1'), pageEl.focus();
-    }
-
-    function route(){
-      const hash = (location.hash || '').replace('#','').trim();
-      if (hash === 'app' && !DIRECT_LINKED_TO_APP) {
-        // Block in-site navigation to #app
-        showPage('home');
-        showToast('This page is available only via the direct link we send after onboarding.');
-        history.replaceState('', '', '#');
-        return;
-      }
-      showPage(hash === 'app' ? 'app' : 'home');
-    }
-    window.addEventListener('hashchange', route);
-
-    // Initial route
-    route();
-
-    // Block clicks to any in-page #app link
-    document.querySelectorAll('[data-app-link]').forEach(a => {
-      a.addEventListener('click', e => {
-        e.preventDefault();
-        showToast('This page is available only via the direct link we send after onboarding.');
-      }, { passive: false });
-    });
-
-    // Make all "Back" buttons on app page go home
-    document.querySelectorAll('#app a[href="#"], #app a[href=""]').forEach(a=>{
-      a.addEventListener('click', e => {
-        e.preventDefault();
-        history.pushState('', '', '#');
-        route();
-      });
-    });
   </script>
+
   <script>
     // Simple one-time password gate (client-side). Note: suitable for low-sensitivity info.
     (function(){
@@ -501,6 +342,7 @@
       function unlock(){
         try{ localStorage.setItem(LS_KEY, PASS_HASH); }catch(e){}
         $html.setAttribute('data-locked','0');
+        // Focus main landmark if present
         const main = document.querySelector('main.page.active') || document.querySelector('main');
         if (main) { main.setAttribute('tabindex','-1'); main.focus(); }
       }
@@ -529,5 +371,4 @@
   </script>
 </body>
 </html>
-
 
