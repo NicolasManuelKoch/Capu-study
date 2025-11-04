@@ -68,18 +68,12 @@
         <p class="note">The secure sign-up form is embedded below. If your device has trouble loading it, use the “Open in new tab” button.</p>
 
         <div class="q-shell">
-          <!-- ⚠️ Use LIVE form URL in production (replace preview with /jfe/form/...) -->
-          <!-- Live form (recommended): -->
-          <!-- https://capilanopsych.yul1.qualtrics.com/jfe/form/SV_ezmgDLGsYbC5spM -->
-          <!-- Preview form (OK for testing): -->
-          <a class="btn" target="_blank" rel="noopener"
-             href="https://capilanopsych.yul1.qualtrics.com/jfe/form/SV_ezmgDLGsYbC5spM">Open form in a new tab</a>
+          <a class="btn" id="openQualtrics" target="_blank" rel="noopener">Open form in a new tab</a>
 
           <iframe
             id="qualtricsFrame"
             class="q-frame"
             title="Qualtrics sign-up form"
-            src="https://capilanopsych.yul1.qualtrics.com/jfe/form/SV_ezmgDLGsYbC5spM"
             loading="eager"
             referrerpolicy="no-referrer-when-downgrade"
             allow="clipboard-write *; fullscreen *"
@@ -96,9 +90,13 @@
   </footer>
 
   <script>
+    // ---------- CONSTANT: your live Qualtrics Anonymous Link ----------
+    const QUALTRICS_URL = "https://capilanopsych.qualtrics.com/jfe/form/SV_ahi16lchVx9bVwq";
+
+    // Set year
     document.getElementById('y').textContent = new Date().getFullYear();
 
-    // Large Text toggle (persists) for join page
+    // Large Text toggle (persists)
     (function(){
       const LS_KEY='largeText';
       function setScale(on){
@@ -119,23 +117,39 @@
       }
     })();
 
-    // Light status + basic load/error handling for the iframe
+    // Build Qualtrics URL with any page query params (optional, handy for UTM/pid)
+    function buildQualtricsURL() {
+      const params = new URLSearchParams(window.location.search);
+      // Example: params.set('study','honours2025');
+      try { params.set('referer', document.referrer || 'direct'); } catch(e){}
+      const qs = params.toString();
+      return qs ? `${QUALTRICS_URL}?${qs}` : QUALTRICS_URL;
+    }
+
+    // Apply URLs to iframe + open button and handle status text
     (function(){
       const frame = document.getElementById('qualtricsFrame');
+      const openBtn = document.getElementById('openQualtrics');
       const status = document.getElementById('qStatus');
-      let timed = false;
 
-      function setStatus(t){ if(status) status.textContent = t; }
+      const fullURL = buildQualtricsURL();
+      if (frame) frame.src = fullURL;
+      if (openBtn) openBtn.href = fullURL;
 
-      frame.addEventListener('load', () => setStatus('Form loaded. If it doesn’t appear, use the “Open in new tab” button above.'));
-      // If something blocks load, show a hint after 5s
+      let hinted = false;
+      function setStatus(t){ if(status){ status.textContent = t; } }
+
+      frame.addEventListener('load', () => setStatus('Form loaded. If it doesn’t appear, use “Open in new tab”.'));
+
+      // If embedding is blocked by security settings, show a helpful hint after 4s
       setTimeout(() => {
-        if (!timed) {
-          setStatus('If the form is blocked by a browser or extension, click “Open in new tab”.');
-          timed = true;
+        if (!hinted) {
+          setStatus('If the form is blocked by a browser or our security settings, click “Open in new tab”.');
+          hinted = true;
         }
-      }, 5000);
+      }, 4000);
     })();
   </script>
 </body>
 </html>
+
