@@ -8,120 +8,80 @@
   <meta name="theme-color" content="#0b1020" />
   <link rel="preload" as="image" href="hero-poster.jpg" />
   <style>
-    /* --- Mobile-first, accessible, responsive layout --- */
-    :root {
-      --bg: #0b1020;
-      --card: #121832;
-      --text: #e9ecf5;
-      --muted: #b6bed6;
-      --accent: #7aa2ff;
-      --accent-2: #4de1c1;
-      --radius: 18px;
-      --shadow: 0 8px 24px rgba(8, 12, 28, 0.4);
-      --focus: 3px solid rgba(122,162,255,0.6);
-      --maxw: 1080px;
-      --padX: clamp(14px, 3.5vw, 24px);
-      --padY: clamp(12px, 2.8vw, 18px);
-      --btn-min: 44px; /* touch target */
-      --error: #ff9aa2;
-      --ok: #8ee8c9;
-      --fontScale: 1;   /* Large Text toggle scaling */
+    :root{
+      --bg:#0b1020;--card:#121832;--text:#e9ecf5;--muted:#b6bed6;--accent:#7aa2ff;--accent-2:#4de1c1;
+      --radius:18px;--shadow:0 8px 24px rgba(8,12,28,.4);--focus:3px solid rgba(122,162,255,.6);
+      --maxw:1080px;--padX:clamp(14px,3.5vw,24px);--padY:clamp(12px,2.8vw,18px);--btn-min:44px;--error:#ff9aa2;--ok:#8ee8c9;--fontScale:1;
     }
-    *, *::before, *::after { box-sizing: border-box; }
-    html { height: 100%; -webkit-text-size-adjust: 100%; }
-    body {
-      margin: 0; height: 100%;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
-      font-size: calc(clamp(16px, 0.9rem + 0.2vw, 18px) * var(--fontScale));
-      line-height: 1.55; color: var(--text);
-      background: radial-gradient(1200px 800px at 10% 0%, #111a3d 0%, var(--bg) 55%);
-      -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
-    }
-    a { color: var(--accent); text-decoration: none; }
-    a:hover { text-decoration: underline; }
-    .wrap { max-width: var(--maxw); margin: 0 auto; padding: var(--padY) var(--padX); }
-
-    header { position: sticky; top: 0; z-index: 10; backdrop-filter: saturate(140%) blur(6px); background: rgba(11,16,32,0.6); border-bottom: 1px solid rgba(255,255,255,0.06); }
-    .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: clamp(1rem, 0.95rem + 0.7vw, 1.15rem); }
-    .brand .dot { width: 10px; height: 10px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent-2)); box-shadow: 0 0 0 3px rgba(122,162,255,0.22); }
-
-    .cta-row { display: flex; gap: 10px; flex-wrap: wrap; }
-    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 12px 16px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.12); background: rgba(255,255,255,0.04); color: var(--text); cursor: pointer; box-shadow: var(--shadow); min-height: var(--btn-min); -webkit-tap-highlight-color: transparent; }
-    .btn.primary { background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: #081423; border: none; font-weight: 700; }
-    .btn:focus-visible { outline: var(--focus); outline-offset: 2px; }
-    .btn[disabled] { opacity: 0.6; cursor: not-allowed; }
-
-    .hero { padding: 24px var(--padX) 8px; }
-    .card { background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02)); border: 1px solid rgba(255,255,255,0.12); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; }
-    .video-shell { position: relative; width: 100%; margin: 0 auto; aspect-ratio: 16/9; border-radius: calc(var(--radius) + 4px); overflow: hidden; }
-    .video-shell video, .video-shell iframe { width: 100%; height: 100%; display: block; }
-    .video-caption { color: var(--muted); font-size: 0.95rem; text-align: center; margin: 10px auto 0; max-width: 70ch; padding: 0 var(--padX); }
-
-    .info { padding: 20px var(--padX) 56px; }
-    .grid { display: grid; gap: 18px; grid-template-columns: 1fr; align-items: start; }
-    @media (min-width: 860px) { .grid { gap: 24px; grid-template-columns: 1.15fr 0.85fr; align-items: start; } }
-
-    h1 { font-size: clamp(1.5rem, 1.15rem + 2.5vw, 2.4rem); margin: 0 0 8px; letter-spacing: 0.2px; }
-    h2 { font-size: clamp(1.1rem, 1rem + 1.2vw, 1.5rem); margin: 0 0 10px; }
-    p.lead { color: var(--muted); margin: 0 0 14px; }
-    ul { margin: 0; padding-left: 18px; }
-    li { margin-bottom: 10px; }
-
-    .bio-card { padding: clamp(16px, 3vw, 22px); }
-    .headshot { width: 100%; border-radius: var(--radius); border: 1px solid rgba(255,255,255,0.12); box-shadow: var(--shadow); object-fit: cover; max-height: 520px; }
-
-    .footer { border-top: 1px solid rgba(255,255,255,0.08); color: var(--muted); padding: 18px var(--padX) 56px; }
-    .fine { font-size: 0.92rem; }
-    .badge { display: inline-block; padding: 6px 10px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.14); font-size: 0.85rem; color: var(--muted); }
-    .spacer { height: 8px; }
-
-    /* Simple hash-router visibility */
-    .page { display: none; }
-    .page.active { display: block; }
-
-    /* Tappable-only tweaks */
-    @media (hover: none) and (pointer: coarse) {
-      .btn { padding: 14px 18px; }
-      .brand .dot { width: 12px; height: 12px; }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      * { scroll-behavior: auto !important; }
-      header { backdrop-filter: none; }
-    }
-
-    /* Notice toast */
-    .toast {
-      position: fixed; left: 50%; bottom: 18px; transform: translateX(-50%);
-      background: #1b234a; color: var(--text); border: 1px solid rgba(255,255,255,0.14);
-      padding: 10px 14px; border-radius: 999px; box-shadow: var(--shadow);
-      font-size: 0.95rem; opacity: 0; pointer-events: none; transition: opacity .25s ease;
-      z-index: 1000;
-    }
-    .toast.show { opacity: 1; }
+    *,*::before,*::after{box-sizing:border-box}
+    html{height:100%;-webkit-text-size-adjust:100%}
+    body{margin:0;height:100%;font-family:system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial,"Noto Sans","Apple Color Emoji","Segoe UI Emoji";
+      font-size:calc(clamp(16px,.9rem + .2vw,18px) * var(--fontScale));line-height:1.55;color:var(--text);
+      background:radial-gradient(1200px 800px at 10% 0%,#111a3d 0%,var(--bg) 55%);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+    a{color:var(--accent);text-decoration:none} a:hover{text-decoration:underline}
+    .wrap{max-width:var(--maxw);margin:0 auto;padding:var(--padY) var(--padX)}
+    header{position:sticky;top:0;z-index:10;backdrop-filter:saturate(140%) blur(6px);background:rgba(11,16,32,.6);border-bottom:1px solid rgba(255,255,255,.06)}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:clamp(1rem,.95rem + .7vw,1.15rem)}
+    .brand .dot{width:10px;height:10px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent-2));box-shadow:0 0 0 3px rgba(122,162,255,.22)}
+    .cta-row{display:flex;gap:10px;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 16px;border-radius:999px;border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.04);color:var(--text);cursor:pointer;box-shadow:var(--shadow);min-height:var(--btn-min);-webkit-tap-highlight-color:transparent}
+    .btn.primary{background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#081423;border:none;font-weight:700}
+    .btn:focus-visible{outline:var(--focus);outline-offset:2px}
+    .btn[disabled]{opacity:.6;cursor:not-allowed}
+    .hero{padding:24px var(--padX) 8px}
+    .card{background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.12);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}
+    .video-shell{position:relative;width:100%;margin:0 auto;aspect-ratio:16/9;border-radius:calc(var(--radius) + 4px);overflow:hidden}
+    .video-shell video,.video-shell iframe{width:100%;height:100%;display:block}
+    .video-caption{color:var(--muted);font-size:.95rem;text-align:center;margin:10px auto 0;max-width:70ch;padding:0 var(--padX)}
+    .info{padding:20px var(--padX) 56px}
+    .grid{display:grid;gap:18px;grid-template-columns:1fr;align-items:start}
+    @media (min-width:860px){.grid{gap:24px;grid-template-columns:1.15fr .85fr;align-items:start}}
+    h1{font-size:clamp(1.5rem,1.15rem + 2.5vw,2.4rem);margin:0 0 8px;letter-spacing:.2px}
+    h2{font-size:clamp(1.1rem,1rem + 1.2vw,1.5rem);margin:0 0 10px}
+    p.lead{color:var(--muted);margin:0 0 14px}
+    ul{margin:0;padding-left:18px} li{margin-bottom:10px}
+    .bio-card{padding:clamp(16px,3vw,22px)}
+    .headshot{width:100%;border-radius:var(--radius);border:1px solid rgba(255,255,255,.12);box-shadow:var(--shadow);object-fit:cover;max-height:520px}
+    .footer{border-top:1px solid rgba(255,255,255,.08);color:var(--muted);padding:18px var(--padX) 56px}
+    .fine{font-size:.92rem}.badge{display:inline-block;padding:6px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.14);font-size:.85rem;color:var(--muted)}
+    .spacer{height:8px}
+    .page{display:none}.page.active{display:block}
+    @media (hover:none) and (pointer:coarse){.btn{padding:14px 18px}.brand .dot{width:12px;height:12px}}
+    @media (prefers-reduced-motion:reduce){*{scroll-behavior:auto !important}header{backdrop-filter:none}}
+    .toast{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);background:#1b234a;color:var(--text);border:1px solid rgba(255,255,255,.14);
+      padding:10px 14px;border-radius:999px;box-shadow:var(--shadow);font-size:.95rem;opacity:0;pointer-events:none;transition:opacity .25s ease;z-index:1000}
+    .toast.show{opacity:1}
+    /* Qualtrics embed styles */
+    .iframe-shell{max-width:1080px;margin:24px auto;padding:0 var(--padX)}
+    .q-card{background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.12);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}
+    .q-header{padding:14px 16px;border-bottom:1px solid rgba(255,255,255,.08);display:flex;justify-content:space-between;align-items:center}
+    .q-title{margin:0;font-size:clamp(1.1rem,1rem + 1.2vw,1.5rem)}
+    .q-frame-wrap{position:relative}
+    .q-frame{width:100%;min-height:1200px;border:0;display:block;background:transparent}
+    .q-note{color:var(--muted);font-size:.95rem;margin:8px 16px 16px}
   </style>
 
-  <!-- Mobile enhancements: iPhone safe area -->
   <style id="mobileEnhancements">
     @supports (padding: max(0px)) {
-      body   { padding-bottom: max(0px, env(safe-area-inset-bottom)); }
-      header { padding-top:    max(0px, env(safe-area-inset-top)); }
+      body{padding-bottom:max(0px, env(safe-area-inset-bottom))}
+      header{padding-top:max(0px, env(safe-area-inset-top))}
     }
   </style>
 
   <!-- Password gate styles -->
   <style>
-    #gate { position: fixed; inset: 0; display: grid; place-items: center; background: radial-gradient(1200px 800px at 10% 0%, #111a3d 0%, #0b1020 55%); z-index: 2000; }
-    #gate .panel { width: min(520px, 92vw); background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02)); border: 1px solid rgba(255,255,255,0.14); border-radius: 18px; box-shadow: 0 8px 24px rgba(8, 12, 28, 0.4); padding: 20px; color: #e9ecf5; }
-    #gate h1 { margin: 0 0 8px; font-size: clamp(1.15rem, 1rem + 1.2vw, 1.6rem); }
-    #gate p { margin: 0 0 12px; color: #b6bed6; }
-    #gate form { display: flex; gap: 10px; align-items: center; }
-    #gate input[type="password"] { flex: 1; min-height: 44px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.16); background: rgba(255,255,255,0.06); color: #e9ecf5; padding: 10px 12px; }
-    #gate button { min-height: 44px; border-radius: 999px; border: none; padding: 10px 16px; font-weight: 700; cursor: pointer; background: linear-gradient(135deg, #7aa2ff, #4de1c1); color: #081423; }
-    #gate .err { margin-top: 10px; color: #ff9aa2; font-size: 0.95rem; min-height: 1.2em; }
-
-    /* When locked, hide everything except the gate */
-    html[data-locked="1"] body > :not(#gate) { display: none !important; }
-    html[data-locked="0"] #gate { display: none !important; }
+    #gate{position:fixed;inset:0;display:grid;place-items:center;background:radial-gradient(1200px 800px at 10% 0%,#111a3d 0%,#0b1020 55%);z-index:2000}
+    #gate .panel{width:min(520px,92vw);background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.14);
+      border-radius:18px;box-shadow:0 8px 24px rgba(8,12,28,.4);padding:20px;color:#e9ecf5}
+    #gate h1{margin:0 0 8px;font-size:clamp(1.15rem,1rem + 1.2vw,1.6rem)}
+    #gate p{margin:0 0 12px;color:#b6bed6}
+    #gate form{display:flex;gap:10px;align-items:center}
+    #gate input[type="password"]{flex:1;min-height:44px;border-radius:12px;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.06);color:#e9ecf5;padding:10px 12px}
+    #gate button{min-height:44px;border-radius:999px;border:none;padding:10px 16px;font-weight:700;cursor:pointer;background:linear-gradient(135deg,#7aa2ff,#4de1c1);color:#081423}
+    #gate .err{margin-top:10px;color:#ff9aa2;font-size:.95rem;min-height:1.2em}
+    html[data-locked="1"] body > :not(#gate){display:none !important}
+    html[data-locked="0"] #gate{display:none !important}
   </style>
 </head>
 <body>
@@ -136,20 +96,20 @@
         <button type="submit">Unlock</button>
       </form>
       <div id="gateErr" class="err" role="status" aria-live="polite"></div>
-      <p style="margin-top:12px; font-size:0.92rem; opacity:.9;">Tip: You’ll only need to do this once on this device.</p>
+      <p style="margin-top:12px;font-size:.92rem;opacity:.9;">Tip: You’ll only need to do this once on this device.</p>
       <noscript><p class="err">JavaScript is required to access this site.</p></noscript>
     </div>
   </div>
 
   <header aria-label="Study header">
-    <div class="wrap" style="display:flex; align-items:center; justify-content:space-between; gap:12px;">
+    <div class="wrap" style="display:flex;align-items:center;justify-content:space-between;gap:12px;">
       <div class="brand" aria-label="Study name">
         <div class="dot" aria-hidden="true"></div>
         <div>Technological Talk Impact — Research Study</div>
       </div>
-      <nav aria-label="Primary" style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
-        <!-- Primary CTAs -->
-        <a class="btn primary" href="join.html" id="joinLink" aria-label="Join the study">Join the Study</a>        <!-- Mobile-only quick dial -->
+      <nav aria-label="Primary" style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+        <!-- Point to in-page survey section -->
+        <a class="btn primary" href="#survey" id="joinLink" aria-label="Join the study">Join the Study</a>
         <a class="btn" href="tel:+1236..." aria-label="Call the researcher" style="display:none;" id="callBtn">Call</a>
       </nav>
     </div>
@@ -168,34 +128,31 @@
         <p id="videoCaption" class="video-caption">A two-minute overview of the study: goals, what participation involves, and how to sign up.</p>
       </div>
       <div class="spacer"></div>
-      <div class="wrap" style="display:flex; justify-content:center; margin-top:12px; padding: 0;">
+      <div class="wrap" style="display:flex;justify-content:center;margin-top:12px;padding:0;">
         <div class="cta-row" style="justify-content:center;">
-          <a class="btn primary" href="join.html" aria-label="Join the study (button under video)">Join the Study</a>
-          <a class="btn" href="#details" aria-label="Scroll to details">See Details</a>        </div>
+          <a class="btn primary" href="#survey" aria-label="Join the study (button under video)">Join the Study</a>
+          <a class="btn" href="#details" aria-label="Scroll to details">See Details</a>
+        </div>
       </div>
     </section>
 
-    <div class="wrap" style="max-width:980px; margin: 10px auto 0;">
+    <div class="wrap" style="max-width:980px;margin:10px auto 0;">
       <div class="card bio-card" aria-label="Key details">
         <h2 id="homeTitle">Expected Start Date</h2>
-        <ul>
-          <li>Beginning of March 2026</li>
-        </ul>
+        <ul><li>Beginning of March 2026</li></ul>
         <h2>Duration</h2>
         <ul><li>4 weeks</li></ul>
         <h2>What to Expect</h2>
         <ul>
           <li>Brief onboarding call, or email, to answer questions and confirm eligibility.</li>
           <li>Daily conversation with a voice-based chatbot or recording a daily audio diary (we will assign which one), min. 5 minutes.</li>
-          <li>Short survey and cognitive tests (10-15 minutes) at the start and end of the study, and two additional 5-10 minute surveys in between.</li>
+          <li>Short survey and cognitive tests (10–15 minutes) at the start and end of the study, and two additional 5–10 minute surveys in between.</li>
         </ul>
 
         <h2 style="margin-top:12px;">Ethics & Consent</h2>
         <p class="lead">This research has been reviewed and approved by the Capilano University Research Ethics Board (REB #______ ). Participation is voluntary and you may withdraw at any time without penalty.</p>
         <div class="cta-row" style="margin-top:6px;">
-          <a class="btn" href="flyer.pdf" download="CapU-Honours-Study-Flyer.pdf" id="piBtn" aria-label="Download the participant information sheet (PDF)">
-            Participant Information (PDF)
-          </a>
+          <a class="btn" href="flyer.pdf" download="CapU-Honours-Study-Flyer.pdf" id="piBtn" aria-label="Download the participant information sheet (PDF)">Participant Information (PDF)</a>
         </div>
       </div>
     </div>
@@ -212,17 +169,16 @@
             <li>Eligibility: <strong>English</strong> speaking adults <strong>65+</strong> who live <strong>alone</strong> with access to a <strong>smartphone</strong> and <strong>internet</strong></li>
             <li>Compensation: <strong>digital certificate</strong> and <strong>“Thank You” video</strong></li>
             <li>Privacy: participation is <strong>voluntary</strong>; you can <strong>withdraw anytime</strong>; talk data stored on <strong>US servers</strong>; all other data stored safely on <strong>Canadian servers</strong></li>
-            <li>Contact: <a href="mailto:nicolaskoch@my.capilanou.ca">nicolaskoch@my.capilanou.ca</a> · <a href="tel:+12368084099">(236)808-4099</a></li>
+            <li>Contact: <a href="mailto:nicolaskoch@my.capilanou.ca">nicolaskoch@my.capilanou.ca</a> · <a href="tel:+12368084099">(236) 808-4099</a></li>
           </ul>
-
-          <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap;">
-            <a class="btn primary" href="join.html" aria-label="Join the Study from About section">Join the Study</a>
+          <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap;">
+            <a class="btn primary" href="#survey" aria-label="Join the Study from About section">Join the Study</a>
           </div>
         </article>
 
         <aside class="card bio-card" aria-label="Researcher headshot" style="max-width:420px;margin:0 auto;padding:16px;text-align:center;">
           <img class="headshot" src="headshot.jpg" alt="Photo of researcher Nmk" loading="lazy" decoding="async" style="width:80%;max-width:min(70vw,360px);height:auto;aspect-ratio:1/1;border-radius:var(--radius);object-fit:cover;display:block;margin:0 auto 12px;">
-          <h3 style="margin:0; font-size: clamp(1.05rem, 1rem + 0.8vw, 1.25rem);">The Researcher: Nicolas M. Koch</h3>
+          <h3 style="margin:0;font-size:clamp(1.05rem,1rem + .8vw,1.25rem);">The Researcher: Nicolas M. Koch</h3>
           <ul>
             <li>Honours B.A. Psychology student at <strong>Capilano University</strong> (Supervisor: Dr. Lesley Schimanski)</li>
           </ul>
@@ -231,17 +187,38 @@
     </section>
   </main>
 
+  <!-- === Embedded Qualtrics Survey (stays on-page) === -->
+  <section id="survey" class="iframe-shell" aria-labelledby="surveyTitle">
+    <div class="q-card">
+      <div class="q-header">
+        <h2 id="surveyTitle" class="q-title">Quick Eligibility & Contact (Qualtrics)</h2>
+        <a class="btn" href="#home" aria-label="Back to top">← Back</a>
+      </div>
+      <div class="q-note">This short form opens below and submits inside this page.</div>
+      <div class="q-frame-wrap">
+        <!-- Replace SV_XXXXXXXXXXXXXXX with your JFE ID -->
+        <iframe
+          id="qualtricsFrame"
+          class="q-frame"
+          title="Study sign-up survey"
+          src="https://capilanopsych.yul1.qualtrics.com/jfe/form/SV_XXXXXXXXXXXXXXX?source=site_embed"
+          loading="eager"
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+    </div>
+  </section>
+
   <!-- APP INSTRUCTIONS PAGE -->
   <main id="app" class="page" aria-labelledby="appTitle">
     <section class="wrap">
       <div class="card bio-card" style="padding:16px;">
-        <div class="cta-row" style="justify-content:space-between; align-items:center; margin-bottom:8px;">
+        <div class="cta-row" style="justify-content:space-between;align-items:center;margin-bottom:8px;">
           <h1 id="appTitle" style="margin:6px 0;">How to get started with the ChatGPT app</h1>
           <a class="btn" href="#" aria-label="Go back to the previous page">← Back</a>
         </div>
 
         <div class="video-shell" style="margin-bottom:8px;">
-          <!-- Replace with your actual tutorial video + poster -->
           <video controls preload="metadata" poster="chatgpt-app-poster.jpg" playsinline webkit-playsinline aria-describedby="appCaption">
             <source src="chatgpt-app-instructions.mp4" type="video/mp4" />
             Sorry, your browser doesn’t support embedded videos.
@@ -251,36 +228,33 @@
           This short video shows how to open the App Store/Play Store, find <em>ChatGPT</em>, and install it.
         </p>
 
-        <div class="cta-row" style="margin-top:10px; flex-wrap:wrap;">
-          <!-- iOS (App Store, US storefront shown; change /us/ if needed) -->
+        <div class="cta-row" style="margin-top:10px;flex-wrap:wrap;">
           <a class="btn primary" href="https://apps.apple.com/us/app/chatgpt/id6448311069" target="_blank" rel="noopener" aria-label="Open in the Apple App Store">Open in App Store (iPhone/iPad)</a>
-          <!-- Android (Play Store) -->
           <a class="btn primary" href="https://play.google.com/store/apps/details?id=com.openai.chatgpt" target="_blank" rel="noopener" aria-label="Open in the Google Play Store">Open in Google Play (Android)</a>
         </div>
 
-        <div class="card" style="margin-top:14px; padding:14px;">
+        <div class="card" style="margin-top:14px;padding:14px;">
           <h2 style="margin:6px 0 8px;">Quick steps (written)</h2>
-          <ol style="margin:0; padding-left:18px;">
-            <li>Open the <strong>App Store</strong> (iPhone/iPad) or <strong>Google Play</strong> (Android).
-            </li>
+          <ol style="margin:0;padding-left:18px;">
+            <li>Open the <strong>App Store</strong> (iPhone/iPad) or <strong>Google Play</strong> (Android).</li>
             <li>Search for <strong>“ChatGPT”</strong> and confirm the publisher is <strong>OpenAI</strong>.</li>
             <li>Tap <strong>Get</strong> / <strong>Install</strong>.</li>
             <li>Open the app, and <strong>Sign up</strong> or <strong>Log in</strong>.</li>
-          <li>Follow the instructions in the video to sign up and start your first chat.</li>
+            <li>Follow the instructions in the video to sign up and start your first chat.</li>
           </ol>
-          <p class="lead" style="margin-top:10px;">If you need help, call us at <a href="tel:+12368084099">(236)808-4099</a> and we’ll walk you through it.</p>
+          <p class="lead" style="margin-top:10px;">If you need help, call us at <a href="tel:+12368084099">(236) 808-4099</a> and we’ll walk you through it.</p>
         </div>
 
         <div class="cta-row" style="margin-top:14px;">
           <a class="btn" href="#" aria-label="Back to home">← Back to Home</a>
-          <a class="btn primary" href="join.html" aria-label="Proceed to join the study">I’m ready — Join the Study</a>
+          <a class="btn primary" href="#survey" aria-label="Proceed to join the study">I’m ready — Join the Study</a>
         </div>
       </div>
     </section>
   </main>
 
   <footer class="footer">
-    <div class="wrap" style="display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;">
+    <div class="wrap" style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;">
       <div class="fine">© <span id="y"></span> CapU Honours Study • Built for outreach & recruitment</div>
       <div class="badge" aria-label="Accessibility note">Accessible: captions ready · keyboard friendly</div>
     </div>
@@ -289,178 +263,113 @@
   <div id="toast" class="toast" role="status" aria-live="polite" aria-atomic="true"></div>
 
   <script>
-    // Set dynamic year
+    // Year
     document.getElementById('y').textContent = new Date().getFullYear();
 
-    // Smooth scroll for internal sections on HOME page (but not the app page)
-    document.querySelectorAll('#home a[href^="#"]').forEach(a => {
-      a.addEventListener('click', e => {
-        const href = a.getAttribute('href');
-        if (href && href.length > 1 && href !== '#app') {
-          const el = document.querySelector(href);
-          if (el) { e.preventDefault(); el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+    // Smooth scroll within HOME
+    document.querySelectorAll('#home a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', e=>{
+        const href=a.getAttribute('href'); if(href && href.length>1 && href!=='#app'){
+          const el=document.querySelector(href); if(el){ e.preventDefault(); el.scrollIntoView({behavior:'smooth',block:'start'}); }
         }
       });
     });
 
-    // Mobile-only quick dial appears if small viewport / touch
-    const callBtn = document.getElementById('callBtn');
-    const isCoarse = matchMedia('(hover: none) and (pointer: coarse)').matches;
-    if (isCoarse) callBtn.style.display = 'inline-flex';
+    // Mobile quick dial
+    const callBtn=document.getElementById('callBtn');
+    const isCoarse=matchMedia('(hover: none) and (pointer: coarse)').matches;
+    if(isCoarse) callBtn.style.display='inline-flex';
 
-    // Large Text toggle (persists)
+    // Large Text toggle
     (function(){
-      const LS_KEY = 'largeText';
+      const LS_KEY='largeText';
       function setScale(on){
-        try{ localStorage.setItem(LS_KEY, on?'1':'0'); }catch(e){}
-        document.documentElement.style.setProperty('--fontScale', on? '1.18' : '1');
+        try{localStorage.setItem(LS_KEY,on?'1':'0');}catch(e){}
+        document.documentElement.style.setProperty('--fontScale', on?'1.18':'1');
         const b=document.getElementById('textToggle'); if(b){ b.setAttribute('aria-pressed', on?'true':'false'); }
       }
-      let initial=false; try{ initial = (localStorage.getItem(LS_KEY)==='1'); }catch(e){}
+      let initial=false; try{initial=(localStorage.getItem(LS_KEY)==='1');}catch(e){}
       setScale(initial);
       const nav=document.querySelector('header nav');
       if(nav && !document.getElementById('textToggle')){
         const btn=document.createElement('button');
         btn.className='btn'; btn.type='button'; btn.id='textToggle';
         btn.setAttribute('aria-label','Toggle large text'); btn.setAttribute('aria-pressed', initial?'true':'false');
-        btn.textContent='A\u00A0A';
-        nav.appendChild(btn);
-        btn.addEventListener('click', function(){ setScale(!(localStorage.getItem(LS_KEY)==='1')); });
+        btn.textContent='A\u00A0A'; nav.appendChild(btn);
+        btn.addEventListener('click',()=>{ setScale(!(localStorage.getItem(LS_KEY)==='1')); });
       }
     })();
 
-    // Force-download Participant Information flyer (robust on mobile)
+    // Force-download PDF fallback
     (function(){
-      const btn = document.getElementById('piBtn');
-      if (!btn) return;
-      const filePath = 'flyer.pdf';
-      const fileName = 'CapU-Honours-Study-Flyer.pdf';
+      const btn=document.getElementById('piBtn'); if(!btn) return;
+      const filePath='flyer.pdf'; const fileName='CapU-Honours-Study-Flyer.pdf';
       btn.addEventListener('click', async function(e){
-        if ('download' in HTMLAnchorElement.prototype) return;
+        if('download' in HTMLAnchorElement.prototype) return;
         e.preventDefault();
-        try {
-          const res = await fetch(filePath, { cache: 'no-store' });
-          if (!res.ok) throw new Error('Network response was not ok');
-          const blob = await res.blob();
-          const url = URL.createObjectURL(blob);
-          const a = document.createElement('a');
-          a.href = url; a.download = fileName;
-          document.body.appendChild(a); a.click(); a.remove();
-          setTimeout(() => URL.revokeObjectURL(url), 2000);
-        } catch {
-          window.location.href = filePath;
-        }
+        try{
+          const res=await fetch(filePath,{cache:'no-store'}); if(!res.ok) throw new Error();
+          const blob=await res.blob(); const url=URL.createObjectURL(blob);
+          const a=document.createElement('a'); a.href=url; a.download=fileName;
+          document.body.appendChild(a); a.click(); a.remove(); setTimeout(()=>URL.revokeObjectURL(url),2000);
+        }catch{ window.location.href=filePath; }
       });
     })();
 
-    /* -------------------------------
-       Direct-link-only access to #app
-       ------------------------------- */
-    const INIT_HASH = (location.hash || '').replace('#','').trim();
-    const DIRECT_LINKED_TO_APP = INIT_HASH === 'app';
-
-    const PAGES = ['home','app'];
-    const toastEl = document.getElementById('toast');
-    function showToast(msg){
-      if(!toastEl) return;
-      toastEl.textContent = msg;
-      toastEl.classList.add('show');
-      clearTimeout(showToast._t);
-      showToast._t = setTimeout(()=> toastEl.classList.remove('show'), 2600);
-    }
-
+    // Simple hash-router & toast
+    const INIT_HASH=(location.hash||'').replace('#','').trim();
+    const DIRECT_LINKED_TO_APP=INIT_HASH==='app';
+    const PAGES=['home','app']; const toastEl=document.getElementById('toast');
+    function showToast(msg){ if(!toastEl) return; toastEl.textContent=msg; toastEl.classList.add('show'); clearTimeout(showToast._t); showToast._t=setTimeout(()=>toastEl.classList.remove('show'),2600); }
     function showPage(id){
-      PAGES.forEach(pid => {
-        const el = document.getElementById(pid);
-        if (el) el.classList.toggle('active', pid === id);
-      });
-      const baseTitle = 'Honours Study – Participant Information';
-      document.title = (id === 'app')
-        ? 'How to get started with the ChatGPT app – Honours Study'
-        : baseTitle;
-      window.scrollTo({ top: 0, behavior: 'instant' in window ? 'instant' : 'auto' });
-      const pageEl = document.getElementById(id);
-      if (pageEl) pageEl.setAttribute('tabindex','-1'), pageEl.focus();
+      PAGES.forEach(pid=>{ const el=document.getElementById(pid); if(el) el.classList.toggle('active', pid===id); });
+      const baseTitle='Honours Study – Participant Information';
+      document.title=(id==='app')?'How to get started with the ChatGPT app – Honours Study':baseTitle;
+      window.scrollTo({top:0, behavior:('instant' in window)?'instant':'auto'});
+      const pageEl=document.getElementById(id); if(pageEl){ pageEl.setAttribute('tabindex','-1'); pageEl.focus(); }
     }
-
     function route(){
-      const hash = (location.hash || '').replace('#','').trim();
-      if (hash === 'app' && !DIRECT_LINKED_TO_APP) {
-        // Block in-site navigation to #app
-        showPage('home');
-        showToast('This page is available only via the direct link we send after onboarding.');
-        // normalize URL back to home without causing a loop
-        history.replaceState('', '', '#');
-        return;
+      const hash=(location.hash||'').replace('#','').trim();
+      if(hash==='app' && !DIRECT_LINKED_TO_APP){
+        showPage('home'); showToast('This page is available only via the direct link we send after onboarding.'); history.replaceState('', '', '#'); return;
       }
-      showPage(hash === 'app' ? 'app' : 'home');
+      showPage(hash==='app'?'app':'home');
     }
-    window.addEventListener('hashchange', route);
-
-    // Initial route
-    route();
-
-    // Block clicks to any in-page #app link
-    document.querySelectorAll('[data-app-link]').forEach(a => {
-      a.addEventListener('click', e => {
-        e.preventDefault();
-        showToast('This page is available only via the direct link we send after onboarding.');
-      }, { passive: false });
+    window.addEventListener('hashchange', route); route();
+    document.querySelectorAll('#app a[href="#"], #app a[href=""]').forEach(a=>{
+      a.addEventListener('click', e=>{ e.preventDefault(); history.pushState('', '', '#'); route(); });
     });
 
-    // Make all "Back" buttons on app page go home
-    document.querySelectorAll('#app a[href="#"], #app a[href=""]').forEach(a=>{
-      a.addEventListener('click', e => {
-        e.preventDefault();
-        history.pushState('', '', '#');
-        route();
+    // Password gate (client-side only)
+    (function(){
+      const PASS_HASH='d6af24ec92bf6475fa595638bbeb4dceadd2cd5748dfbc4a4a93c7c57e25e2ec'; // sha-256 of "capustudy2026"
+      const LS_KEY='capu_auth_v1'; const $html=document.documentElement;
+      const $form=document.getElementById('gateForm'); const $pw=document.getElementById('gatePw'); const $err=document.getElementById('gateErr');
+      async function sha256Hex(str){ const buf=new TextEncoder().encode(str); const digest=await crypto.subtle.digest('SHA-256', buf); return Array.from(new Uint8Array(digest)).map(b=>b.toString(16).padStart(2,'0')).join(''); }
+      function unlock(){ try{localStorage.setItem(LS_KEY, PASS_HASH);}catch(e){} $html.setAttribute('data-locked','0'); const main=document.querySelector('main.page.active')||document.querySelector('main'); if(main){ main.setAttribute('tabindex','-1'); main.focus(); } }
+      async function check(){ let ok=false; try{ ok=(localStorage.getItem(LS_KEY)===PASS_HASH);}catch(e){} if(ok){ unlock(); return; } $html.setAttribute('data-locked','1'); }
+      if($form){ $form.addEventListener('submit', async (e)=>{ e.preventDefault(); $err.textContent=''; const val=($pw.value||'').trim(); if(!val){ $err.textContent='Please enter the password.'; return; } const h=await sha256Hex(val); if(h===PASS_HASH){ unlock(); } else { $err.textContent='Incorrect password. Please try again.'; $pw.select(); } }); }
+      check();
+    })();
+
+    // Scroll to survey when clicking any #survey link
+    document.querySelectorAll('a[href="#survey"]').forEach(a=>{
+      a.addEventListener('click', e=>{
+        const el=document.getElementById('survey'); if(!el) return;
+        e.preventDefault(); el.scrollIntoView({behavior:'smooth', block:'start'});
       });
     });
-  </script>
-  <script>
-    // Simple one-time password gate (client-side). Note: suitable for low-sensitivity info.
+
+    // Auto-resize Qualtrics iframe based on postMessage
     (function(){
-      const PASS_HASH = 'd6af24ec92bf6475fa595638bbeb4dceadd2cd5748dfbc4a4a93c7c57e25e2ec'; // sha-256 of "capustudy2026"
-      const LS_KEY = 'capu_auth_v1';
-      const $html = document.documentElement;
-      const $form = document.getElementById('gateForm');
-      const $pw = document.getElementById('gatePw');
-      const $err = document.getElementById('gateErr');
-
-      async function sha256Hex(str){
-        const buf = new TextEncoder().encode(str);
-        const digest = await crypto.subtle.digest('SHA-256', buf);
-        return Array.from(new Uint8Array(digest)).map(b=>b.toString(16).padStart(2,'0')).join('');
-      }
-
-      function unlock(){
-        try{ localStorage.setItem(LS_KEY, PASS_HASH); }catch(e){}
-        $html.setAttribute('data-locked','0');
-        // Focus main landmark if present
-        const main = document.querySelector('main.page.active') || document.querySelector('main');
-        if (main) { main.setAttribute('tabindex','-1'); main.focus(); }
-      }
-
-      async function check(){
-        let ok = false;
-        try{ ok = (localStorage.getItem(LS_KEY) === PASS_HASH); }catch(e){}
-        if (ok) { unlock(); return; }
-        $html.setAttribute('data-locked','1');
-      }
-
-      if ($form) {
-        $form.addEventListener('submit', async (e)=>{
-          e.preventDefault();
-          $err.textContent = '';
-          const val = ($pw.value || '').trim();
-          if (!val) { $err.textContent = 'Please enter the password.'; return; }
-          const h = await sha256Hex(val);
-          if (h === PASS_HASH) { unlock(); }
-          else { $err.textContent = 'Incorrect password. Please try again.'; $pw.select(); }
-        });
-      }
-
-      check();
+      const frame=document.getElementById('qualtricsFrame'); if(!frame) return;
+      const ALLOW=['https://capilanopsych.yul1.qualtrics.com'];
+      window.addEventListener('message',(e)=>{
+        if(!ALLOW.includes(e.origin)) return;
+        const d=e.data||{};
+        const h=(typeof d.height==='number' && d.height) || (d.qualtricsHeight && Number(d.qualtricsHeight));
+        if(h && h>400) frame.style.minHeight=(h+40)+'px';
+      },false);
     })();
   </script>
 </body>
