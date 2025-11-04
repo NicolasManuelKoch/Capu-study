@@ -149,7 +149,8 @@
       </div>
       <nav aria-label="Primary" style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
         <!-- Primary CTAs -->
-        <a class="btn primary" href="join.html" id="joinLink" aria-label="Join the study">Join the Study</a>        <!-- Mobile-only quick dial -->
+        <a class="btn primary" href="join.html" id="joinLink" aria-label="Join the study">Join the Study</a>
+        <!-- Mobile-only quick dial -->
         <a class="btn" href="tel:+1236..." aria-label="Call the researcher" style="display:none;" id="callBtn">Call</a>
       </nav>
     </div>
@@ -171,7 +172,8 @@
       <div class="wrap" style="display:flex; justify-content:center; margin-top:12px; padding: 0;">
         <div class="cta-row" style="justify-content:center;">
           <a class="btn primary" href="join.html" aria-label="Join the study (button under video)">Join the Study</a>
-          <a class="btn" href="#details" aria-label="Scroll to details">See Details</a>        </div>
+          <a class="btn" href="#details" aria-label="Scroll to details">See Details</a>
+        </div>
       </div>
     </section>
 
@@ -220,12 +222,34 @@
           </div>
         </article>
 
-        <aside class="card bio-card" aria-label="Researcher headshot" style="max-width:420px;margin:0 auto;padding:16px;text-align:center;">
-          <img class="headshot" src="headshot.jpg" alt="Photo of researcher Nmk" loading="lazy" decoding="async" style="width:80%;max-width:min(70vw,360px);height:auto;aspect-ratio:1/1;border-radius:var(--radius);object-fit:cover;display:block;margin:0 auto 12px;">
+        <!-- UPDATED ASIDE WITH SUPERVISOR IMAGE ADDED BELOW YOURS -->
+        <aside class="card bio-card" aria-label="Researcher & Supervisor photos" style="max-width:420px;margin:0 auto;padding:16px;text-align:center;">
+          <!-- Researcher -->
+          <img
+            class="headshot"
+            src="headshot.jpg"
+            alt="Photo of researcher Nicolas M. Koch"
+            loading="lazy"
+            decoding="async"
+            style="width:80%;max-width:min(70vw,360px);height:auto;aspect-ratio:1/1;border-radius:var(--radius);object-fit:cover;display:block;margin:0 auto 12px;"
+          >
           <h3 style="margin:0; font-size: clamp(1.05rem, 1rem + 0.8vw, 1.25rem);">The Researcher: Nicolas M. Koch</h3>
-          <ul>
+          <ul style="margin-bottom:10px;">
             <li>Honours B.A. Psychology student at <strong>Capilano University</strong> (Supervisor: Dr. Lesley Schimanski)</li>
           </ul>
+
+          <!-- Supervisor -->
+          <img
+            class="headshot"
+            src="supervisor.jpg"               <!-- update this filename if needed -->
+            alt="Photo of research supervisor Dr. Lesley Schimanski"
+            loading="lazy"
+            decoding="async"
+            style="width:80%;max-width:min(70vw,360px);height:auto;aspect-ratio:1/1;border-radius:var(--radius);object-fit:cover;display:block;margin:14px auto 8px;"
+          >
+          <div style="font-size:0.98rem;color:var(--muted);">
+            Research Supervisor: <strong>Dr. Lesley Schimanski</strong>
+          </div>
         </aside>
       </div>
     </section>
@@ -255,7 +279,7 @@
           <!-- iOS (App Store, US storefront shown; change /us/ if needed) -->
           <a class="btn primary" href="https://apps.apple.com/us/app/chatgpt/id6448311069" target="_blank" rel="noopener" aria-label="Open in the Apple App Store">Open in App Store (iPhone/iPad)</a>
           <!-- Android (Play Store) -->
-          <a class="btn primary" href="https://play.google.com/store/apps/details?id=com.openai.chatgpt" target="_blank" rel="noopener" aria-label="Open in the Google Play Store">Open in Google Play (Android)</a>
+          <a class="btn primary" href="https://play.google.com/store/apps/details?id=com.openai.chatgpt" target="_blank" rel="noopener" aria-label="Open in Google Play (Android)">Open in Google Play (Android)</a>
         </div>
 
         <div class="card" style="margin-top:14px; padding:14px;">
@@ -435,7 +459,7 @@
 
       function unlock(){
         try{ localStorage.setItem(LS_KEY, PASS_HASH); }catch(e){}
-        $html.setAttribute('data-locked','0');
+        document.documentElement.setAttribute('data-locked','0');
         // Focus main landmark if present
         const main = document.querySelector('main.page.active') || document.querySelector('main');
         if (main) { main.setAttribute('tabindex','-1'); main.focus(); }
@@ -445,7 +469,7 @@
         let ok = false;
         try{ ok = (localStorage.getItem(LS_KEY) === PASS_HASH); }catch(e){}
         if (ok) { unlock(); return; }
-        $html.setAttribute('data-locked','1');
+        document.documentElement.setAttribute('data-locked','1');
       }
 
       if ($form) {
@@ -465,3 +489,4 @@
   </script>
 </body>
 </html>
+
