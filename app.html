@@ -6,6 +6,7 @@
   <title>How to get started with the ChatGPT app – Honours Study</title>
   <meta name="description" content="Step-by-step instructions to install the ChatGPT app for the Honours study." />
   <meta name="theme-color" content="#0b1020" />
+  <meta name="robots" content="noindex, nofollow" />
   <link rel="preload" as="image" href="chatgpt-app-poster.jpg" />
   <style>
     /* Theme */
@@ -54,6 +55,9 @@
     .video-shell video { width: 100%; height: 100%; display: block; }
     .video-caption { color: var(--muted); font-size: 0.95rem; text-align: center; margin: 10px auto 0; max-width: 70ch; }
 
+    /* Button row (centered) */
+    .cta-row { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+
     /* Footer */
     .footer { border-top: 1px solid rgba(255,255,255,.08); color: var(--muted); padding: 18px var(--padX) 56px; }
     .fine { font-size: .92rem; }
@@ -89,7 +93,6 @@
       <h1 id="appTitle" style="margin:6px 0;">How to get started with the ChatGPT app</h1>
 
       <div class="video-shell" style="margin:10px 0 8px;">
-        <!-- Replace with your actual tutorial video + poster -->
         <video controls preload="metadata" poster="chatgpt-app-poster.jpg" playsinline webkit-playsinline aria-describedby="appCaption">
           <source src="chatgpt-app-instructions.mp4" type="video/mp4" />
           Sorry, your browser doesn’t support embedded videos.
@@ -98,6 +101,12 @@
       <p id="appCaption" class="video-caption">
         This short video shows how to open the App Store/Play Store, find <em>ChatGPT</em>, and install it.
       </p>
+
+      <!-- Moved up & centered: platform buttons -->
+      <div class="cta-row" style="margin:12px 0;">
+        <a class="btn primary" href="https://apps.apple.com/us/app/chatgpt/id6448311069" target="_blank" rel="noopener" aria-label="Open in the Apple App Store">Open in App Store (iPhone/iPad)</a>
+        <a class="btn primary" href="https://play.google.com/store/apps/details?id=com.openai.chatgpt" target="_blank" rel="noopener" aria-label="Open in Google Play (Android)">Open in Google Play (Android)</a>
+      </div>
 
       <div class="card" style="margin-top:14px; padding:14px;">
         <h2 style="margin:6px 0 8px;">Quick steps (written)</h2>
@@ -111,13 +120,9 @@
         <p class="video-caption" style="margin-top:10px;">If you need help, call us at <a href="tel:+12368084099">(236)808-4099</a> and we’ll walk you through it.</p>
       </div>
 
-      <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:12px;">
-        <!-- iOS (App Store, US storefront shown; change /us/ if needed) -->
-        <a class="btn primary" href="https://apps.apple.com/us/app/chatgpt/id6448311069" target="_blank" rel="noopener" aria-label="Open in the Apple App Store">Open in App Store (iPhone/iPad)</a>
-        <!-- Android (Play Store) -->
-        <a class="btn primary" href="https://play.google.com/store/apps/details?id=com.openai.chatgpt" target="_blank" rel="noopener" aria-label="Open in Google Play (Android)">Open in Google Play (Android)</a>
+      <!-- Bottom row: just Back to Home (removed Join Study button) -->
+      <div class="cta-row" style="margin-top:12px;">
         <a class="btn" href="index.html" aria-label="Back to home (bottom)">← Back to Home</a>
-        <a class="btn primary" href="join.html" aria-label="Proceed to join the study">I’m ready — Join the Study</a>
       </div>
     </div>
   </main>
@@ -135,3 +140,4 @@
   </script>
 </body>
 </html>
+
