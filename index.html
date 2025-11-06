@@ -60,9 +60,54 @@
 
     .hero { padding: 24px var(--padX) 8px; }
     .card { background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02)); border: 1px solid rgba(255,255,255,0.12); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; }
-    .video-shell { position: relative; width: 100%; margin: 0 auto; aspect-ratio: 16/9; border-radius: calc(var(--radius) + 4px); overflow: hidden; }
-    .video-shell video, .video-shell iframe { width: 100%; height: 100%; display: block; }
+
+    /* Video shell with background image + overlay play icon */
+    .video-shell {
+      position: relative;
+      width: 100%;
+      margin: 0 auto;
+      aspect-ratio: 16/9;
+      border-radius: calc(var(--radius) + 4px);
+      overflow: hidden;
+      background-size: cover;
+      background-position: center;
+      background-color: #000;
+    }
+    .video-shell video, .video-shell iframe {
+      width: 100%;
+      height: 100%;
+      display: block;
+      background: transparent;
+    }
+
     .video-caption { color: var(--muted); font-size: 0.95rem; text-align: center; margin: 10px auto 0; max-width: 70ch; padding: 0 var(--padX); }
+
+    /* Play overlay icon */
+    .video-shell::after {
+      content: '▶';
+      position: absolute;
+      inset: 0;
+      margin: auto;
+      width: 72px;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.55);
+      font-size: 32px;
+      line-height: 1;
+      text-indent: 4px; /* slight nudge so triangle looks centered */
+      color: #ffffff;
+      pointer-events: none; /* don't block clicks on the video controls */
+      opacity: 0.9;
+      transition: opacity 0.18s ease-out, transform 0.18s ease-out;
+      transform: scale(1);
+    }
+    .video-shell.is-playing::after {
+      opacity: 0;
+      transform: scale(0.8);
+    }
 
     h1 { font-size: clamp(1.5rem, 1.15rem + 2.5vw, 2.4rem); margin: 0 0 8px; letter-spacing: 0.2px; }
     h2 { font-size: clamp(1.1rem, 1rem + 1.2vw, 1.5rem); margin: 0 0 10px; }
@@ -378,7 +423,39 @@
       check();
     })();
   </script>
+
+  <script>
+    // Toggle play overlay visibility + use poster as background for hero video
+    (function () {
+      const shells = document.querySelectorAll('.video-shell');
+      shells.forEach(shell => {
+        const video = shell.querySelector('video');
+        if (!video) return;
+
+        // Use poster as background image if available
+        if (video.poster) {
+          shell.style.backgroundImage = 'url("' + video.poster + '")';
+        }
+
+        const updateOverlay = () => {
+          if (video.paused) {
+            shell.classList.remove('is-playing');
+          } else {
+            shell.classList.add('is-playing');
+          }
+        };
+
+        video.addEventListener('play', updateOverlay);
+        video.addEventListener('pause', updateOverlay);
+        video.addEventListener('ended', updateOverlay);
+
+        // Initial state
+        updateOverlay();
+      });
+    })();
+  </script>
 </body>
 </html>
+
 
 
