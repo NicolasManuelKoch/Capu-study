@@ -104,11 +104,15 @@
       aspect-ratio: 16/9;
       border-radius: calc(var(--radius) + 4px);
       overflow: hidden;
+      background-size: cover;
+      background-position: center;
+      background-color: #000;
     }
 
     .video-shell video {
       width: 100%; height: 100%;
       display: block;
+      background: transparent;
     }
 
     .video-caption {
@@ -380,9 +384,21 @@ Sé proactivo y alentador con respecto a la socialización, pero mantén el tono
         updateOverlay();
       });
     })();
+
+    // Use the video's poster as the background image of the shell
+    (function () {
+      const shells = document.querySelectorAll('.video-shell');
+      shells.forEach(shell => {
+        const video = shell.querySelector('video');
+        if (video && video.poster) {
+          shell.style.backgroundImage = 'url("' + video.poster + '")';
+        }
+      });
+    })();
   </script>
 </body>
 </html>
+
 
 
 
