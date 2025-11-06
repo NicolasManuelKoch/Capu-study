@@ -63,6 +63,31 @@
     .fine { font-size: .92rem; }
     .badge { display: inline-block; padding: 6px 10px; border-radius: 999px; border: 1px solid rgba(255,255,255,.14); font-size: .85rem; color: var(--muted); }
 
+    /* Memory text area */
+    .memory-box {
+      margin-top: 10px;
+    }
+    .memory-textarea {
+      width: 100%;
+      min-height: 220px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,.16);
+      padding: 10px 12px;
+      background: rgba(5,8,20,.8);
+      color: var(--text);
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans";
+      font-size: 0.9rem;
+      resize: vertical;
+      white-space: pre-wrap;
+    }
+    .memory-actions {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 8px;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
     /* Mobile tweaks */
     @media (hover: none) and (pointer: coarse) {
       .btn { padding: 14px 18px; }
@@ -108,6 +133,7 @@
         <a class="btn primary" href="https://play.google.com/store/apps/details?id=com.openai.chatgpt" target="_blank" rel="noopener" aria-label="Open in Google Play (Android)">Open in Google Play (Android)</a>
       </div>
 
+      <!-- Quick steps card -->
       <div class="card" style="margin-top:14px; padding:14px;">
         <h2 style="margin:6px 0 8px;">Quick steps (written)</h2>
         <ol style="margin:0; padding-left:18px;">
@@ -118,6 +144,53 @@
           <li>Follow the instructions in the video to start your first chat.</li>
         </ol>
         <p class="video-caption" style="margin-top:10px;">If you need help, call us at <a href="tel:+12368084099">(236)808-4099</a> and we’ll walk you through it.</p>
+      </div>
+
+      <!-- New instructions + memory text box -->
+      <div class="card" style="margin-top:14px; padding:14px;">
+        <h2 style="margin:6px 0 6px;">Instructions for updating ChatGPT memory</h2>
+        <p style="margin:0 0 8px; color:var(--muted); font-size:0.95rem;">
+          When you are in the ChatGPT app, open a new chat, press and hold in the message box, choose <strong>Paste</strong>, and send this message.
+          You can tap <strong>Copy</strong> below to copy everything at once.
+        </p>
+
+        <div class="memory-box">
+          <label for="memoryText" class="video-caption" style="display:block; text-align:left; margin-bottom:6px;">
+            Text to paste into ChatGPT:
+          </label>
+          <textarea id="memoryText" class="memory-textarea" readonly>
+Update memory:
+
+Conversation timing:
+At the start and end of every conversation, check the current date/time and link it to the conversation for your own reference.
+
+Session guardrails:
+
+Be very proactive and also personal, initiate conversations regularly, and be especially proactive about socializing. 
+Use his/her name (ask once if unknown).
+Keep sessions 5–20 minutes; after 20 minutes or 20 turns, say goodbye and pause meaningful interaction for 12 hours.
+Before ending the conversation, usually in the first 5 minutes, suggest one concrete real-world social step (meetup, community center, text/call a friend or family member, plan an activity etc.).
+Make sure to confirm one specific social action before ending the conversation.
+If sessions get too long or he/she reports less time with people, suggest scaling back here and adding human contact.
+If he/she seeks clinical help or shows risk, encourage professional/urgent support.
+
+Style & customization:
+
+Be proactive and encouraging about socializing, but keep the start/middle natural and personal.
+Save the social nudge for the end (as a sign-off) when the user seems about to leave.
+Focus on getting to know him/her (ask personal questions sometimes).
+
+Main goal: help connect with real people (calls, texts, meetups, local activities), but don’t mention specifically that you’re giving a social nudge.
+Start conversations short, warm, and personal (“How are you today?” / “Long time no see!”), then ask early questions.
+Offer nudges only when it feels natural, not forced.
+          </textarea>
+
+          <div class="memory-actions">
+            <button class="btn primary" type="button" id="copyMemoryBtn" aria-label="Copy memory text">
+              Copy
+            </button>
+          </div>
+        </div>
       </div>
 
       <!-- Bottom row: just Back to Home (removed Join Study button) -->
@@ -137,7 +210,36 @@
   <script>
     // Dynamic year
     document.getElementById('y').textContent = new Date().getFullYear();
+
+    // Copy memory text
+    (function () {
+      const btn = document.getElementById('copyMemoryBtn');
+      const textarea = document.getElementById('memoryText');
+
+      if (btn && textarea) {
+        btn.addEventListener('click', async function () {
+          try {
+            const text = textarea.value;
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+              await navigator.clipboard.writeText(text);
+            } else {
+              // Fallback for older browsers
+              textarea.select();
+              document.execCommand('copy');
+            }
+            btn.textContent = 'Copied!';
+            setTimeout(() => { btn.textContent = 'Copy'; }, 1500);
+          } catch (e) {
+            console.error('Copy failed:', e);
+            btn.textContent = 'Copy failed';
+            setTimeout(() => { btn.textContent = 'Copy'; }, 2000);
+          }
+        });
+      }
+    })();
   </script>
 </body>
+</html>
+
 </html>
 
