@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>How to share your ChatGPT chats – Honours Study</title>
+  <meta name="description" content="Step-by-step instructions to select and share four ChatGPT conversations (one from each week of the study) with the research team." />
+  <meta name="theme-color" content="#0b1020" />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="preload" as="image" href="share-chats-poster.jpg" />
+  <style>
+    /* Theme */
+    :root {
+      --bg: #0b1020;
+      --card: #121832;
+      --text: #e9ecf5;
+      --muted: #b6bed6;
+      --accent: #7aa2ff;
+      --accent-2: #4de1c1;
+      --radius: 18px;
+      --shadow: 0 8px 24px rgba(8,12,28,.4);
+      --focus: 3px solid rgba(122,162,255,.6);
+      --maxw: 1080px;
+      --padX: clamp(14px, 3.5vw, 24px);
+      --padY: clamp(12px, 2.8vw, 18px);
+      --btn-min: 44px;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { height: 100%; -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0; min-height: 100%;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans";
+      color: var(--text); line-height: 1.55;
+      background: radial-gradient(1200px 800px at 10% 0%, #111a3d 0%, var(--bg) 55%);
+      -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .wrap { max-width: var(--maxw); margin: 0 auto; padding: var(--padY) var(--padX); }
+
+    /* Header */
+    header { position: sticky; top: 0; z-index: 10; backdrop-filter: saturate(140%) blur(6px); background: rgba(11,16,32,.6); border-bottom: 1px solid rgba(255,255,255,.06); }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: clamp(1rem, .95rem + .7vw, 1.15rem); }
+    .dot { width: 10px; height: 10px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent-2)); box-shadow: 0 0 0 3px rgba(122,162,255,.22); }
+
+    /* Cards & buttons */
+    .card { background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02)); border: 1px solid rgba(255,255,255,.12); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; }
+    .bio-card { padding: clamp(16px, 3vw, 22px); }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 12px 16px; border-radius: 999px; border: 1px solid rgba(255,255,255,.12); background: rgba(255,255,255,.04); color: var(--text); cursor: pointer; min-height: var(--btn-min); box-shadow: var(--shadow); -webkit-tap-highlight-color: transparent; }
+    .btn.primary { background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: #081423; border: none; font-weight: 700; }
+    .btn:focus-visible { outline: var(--focus); outline-offset: 2px; }
+    .btn[disabled] {
+      opacity: 0.5;
+      cursor: default;
+      box-shadow: none;
+    }
+
+    /* Video */
+    .video-shell { position: relative; width: 100%; aspect-ratio: 16/9; border-radius: calc(var(--radius) + 4px); overflow: hidden; }
+    .video-shell video { width: 100%; height: 100%; display: block; }
+    .video-caption { color: var(--muted); font-size: 0.95rem; text-align: center; margin: 10px auto 0; max-width: 70ch; }
+
+    /* Button row (centered) */
+    .cta-row { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+
+    /* Footer */
+    .footer { border-top: 1px solid rgba(255,255,255,.08); color: var(--muted); padding: 18px var(--padX) 56px; }
+    .fine { font-size: .92rem; }
+    .badge { display: inline-block; padding: 6px 10px; border-radius: 999px; border: 1px solid rgba(255,255,255,.14); font-size: .85rem; color: var(--muted); }
+
+    /* Small definition list */
+    dl { margin: 0; }
+    dt { font-weight: 600; margin-top: 6px; }
+    dd { margin: 0 0 4px 0; color: var(--muted); font-size: 0.95rem; }
+
+    /* Random day output */
+    .random-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 8px;
+      margin-top: 10px;
+    }
+    .random-box {
+      padding: 8px 10px;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.16);
+      background: rgba(5,8,20,0.7);
+      font-size: 0.92rem;
+    }
+    .random-label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+    .random-value {
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+  <header aria-label="Study header">
+    <div class="wrap" style="display:flex; align-items:center; justify-content:space-between; gap:12px;">
+      <div class="brand">
+        <div class="dot" aria-hidden="true"></div>
+        <div>Technological Talk Impact — Research Study</div>
+      </div>
+      <nav aria-label="Primary" style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+        <a class="btn" href="index.html" aria-label="Back to home">← Back to Home</a>
+        <a class="btn primary" href="join.html" aria-label="Join the study">Join the Study</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap" aria-labelledby="pageTitle">
+    <div class="card bio-card">
+      <h1 id="pageTitle" style="margin:6px 0;">How to share four ChatGPT chats with the researchers</h1>
+
+      <p style="margin:0 0 10px; color:var(--muted); font-size:0.98rem;">
+        During the study, we ask you to share <strong>4 ChatGPT conversations</strong> with us, 
+        <strong>one from each week</strong> of the 4-week study.  
+        Please <strong>do not include private details</strong> (for example, names, addresses, or account numbers).
+      </p>
+
+      <!-- Optional video section -->
+      <div class="video-shell" style="margin:10px 0 8px;">
+        <video controls preload="metadata" poster="share-chats-poster.jpg" playsinline webkit-playsinline aria-describedby="videoCaption">
+          <source src="share-chats-instructions.mp4" type="video/mp4" />
+          Sorry, your browser doesn’t support embedded videos.
+        </video>
+      </div>
+      <p id="videoCaption" class="video-caption">
+        This short video shows how to pick one chat from each week and copy or share it with the research team.
+      </p>
+
+      <!-- Step 0 – Random number generator -->
+      <div class="card" style="margin-top:14px; padding:14px;">
+        <h2 style="margin:6px 0 8px;">Step 0 – Randomly pick one day in each week</h2>
+        <p style="margin:0 0 8px; color:var(--muted); font-size:0.95rem;">
+          To keep things fair, we will choose <strong>one random day in each week</strong> of the study.  
+          These numbers are generated <strong>only once</strong>, so please <strong>write them down or take a screenshot</strong> before you continue.
+        </p>
+
+        <button class="btn primary" type="button" id="generateDaysBtn">
+          Generate random days
+        </button>
+
+        <div class="random-row" style="margin-top:10px;">
+          <div class="random-box">
+            <span class="random-label">Week 1 (Days 1–7)</span>
+            <span class="random-value" id="dayWeek1">–</span>
+          </div>
+          <div class="random-box">
+            <span class="random-label">Week 2 (Days 8–14)</span>
+            <span class="random-value" id="dayWeek2">–</span>
+          </div>
+          <div class="random-box">
+            <span class="random-label">Week 3 (Days 15–21)</span>
+            <span class="random-value" id="dayWeek3">–</span>
+          </div>
+          <div class="random-box">
+            <span class="random-label">Week 4 (Days 22–28)</span>
+            <span class="random-value" id="dayWeek4">–</span>
+          </div>
+        </div>
+
+        <p class="video-caption" style="margin-top:10px; text-align:left;">
+          After the numbers appear, please <strong>note them down</strong>.  
+          Example: if Week&nbsp;1 shows <strong>Day 1</strong>, look at your earliest chats in Week&nbsp;1 and pick a chat from around the first day of that week.
+        </p>
+      </div>
+
+      <!-- Quick steps: choosing the 4 chats, using the random days -->
+      <div class="card" style="margin-top:14px; padding:14px;">
+        <h2 style="margin:6px 0 8px;">Part 1 – Using the numbers to choose your four chats</h2>
+        <ol style="margin:0; padding-left:18px;">
+          <li>Open the <strong>ChatGPT app</strong> on your phone or tablet.</li>
+          <li>Go to your list of <strong>recent chats</strong> (your history).</li>
+
+          <li><strong>For Week 1</strong>:
+            <ul style="margin:4px 0 6px 0; padding-left:18px;">
+              <li>Look at the number shown for <strong>Week 1</strong> above (for example, Day 1–7).</li>
+              <li>Scroll to the chats from the <strong>first week</strong> of the study.</li>
+              <li>If the number is <strong>1</strong>, scroll all the way down to your earliest chat that week and choose the <strong>first chat</strong>.</li>
+              <li>If the number is larger (for example, 4), count your chats for that week and choose the <strong>4th chat</strong> in that week.  
+                If you have fewer chats than that number, choose the <strong>last chat</strong> in that week.</li>
+            </ul>
+          </li>
+
+          <li><strong>Repeat for Week 2, Week 3, and Week 4</strong>:
+            <ul style="margin:4px 0 6px 0; padding-left:18px;">
+              <li>Use the random day shown for that week (Week 2: Days 8–14, Week 3: Days 15–21, Week 4: Days 22–28).</li>
+              <li>Scroll to the chats in that week.</li>
+              <li>Count through your chats for that week until you reach the number, and select that chat.  
+                  If there are fewer chats than the number, select the last chat in that week.</li>
+            </ul>
+          </li>
+
+          <li>In the end, you will have <strong>4 chats</strong>:
+            one from Week 1, one from Week 2, one from Week 3, and one from Week 4.</li>
+        </ol>
+      </div>
+
+      <!-- Part 2: how to share link + form for four links -->
+      <div class="card" style="margin-top:14px; padding:14px;">
+        <h2 style="margin:6px 0 8px;">Part 2 – How to share each chat (share the link)</h2>
+        <p style="margin:0 0 8px; color:var(--muted); font-size:0.95rem;">
+          For each of the 4 chats you chose, you can send us a <strong>link</strong> to the conversation.
+        </p>
+
+        <h3 style="margin:8px 0 4px; font-size:1rem;">On iPhone / iPad</h3>
+        <ol style="margin:0 0 6px 0; padding-left:18px;">
+          <li>Open the chat you want to share.</li>
+          <li>At the top of the screen, tap the <strong>three dots</strong> (<strong>⋯</strong>) or the <strong>share</strong> button.</li>
+          <li>Choose <strong>Share chat</strong> (or similar option).</li>
+          <li>In the menu that appears, tap <strong>Copy link</strong>.</li>
+        </ol>
+
+        <h3 style="margin:10px 0 4px; font-size:1rem;">On Android phone / tablet</h3>
+        <ol style="margin:0; padding-left:18px;">
+          <li>Open the chat you want to share.</li>
+          <li>Tap the <strong>three dots</strong> (<strong>⋯</strong>) or the <strong>share</strong> button at the top of the screen.</li>
+          <li>Choose <strong>Share chat</strong> (or similar option).</li>
+          <li>Select <strong>Copy link</strong> from the list.</li>
+        </ol>
+
+        <p class="video-caption" style="margin-top:10px; text-align:left;">
+          Repeat these steps for each of the <strong>4 chats</strong> (Week 1, Week 2, Week 3, and Week 4).
+        </p>
+
+        <h3 style="margin:12px 0 6px; font-size:1rem;">Step 3 – Put your four links together and send them</h3>
+        <p style="margin:0 0 6px; color:var(--muted); font-size:0.95rem;">
+          Paste the link for each week in the box below (for example: “Week 1: &hellip;”, “Week 2: &hellip;”), then press
+          <strong>Submit links</strong>. This will send your links to our secure survey page.
+        </p>
+
+        <!-- FORM: replace the action URL with your Qualtrics link -->
+        <form
+          id="chatLinksForm"
+          action="https://YOUR-QUALTRICS-LINK-GOES-HERE"
+          method="post"
+          target="_blank"
+        >
+          <label for="chatLinks" style="display:block; font-size:0.95rem; margin-bottom:4px;">
+            Your 4 chat links:
+          </label>
+          <textarea
+            id="chatLinks"
+            name="chat_links"
+            style="
+              width: 100%;
+              min-height: 160px;
+              border-radius: 12px;
+              border: 1px solid rgba(255,255,255,.16);
+              padding: 10px 12px;
+              background: rgba(5,8,20,.8);
+              color: var(--text);
+              font-family: system-ui, -apple-system, Segoe UI, Roboto, 'Helvetica Neue', Arial, 'Noto Sans';
+              font-size: 0.9rem;
+              resize: vertical;
+            "
+            placeholder="Week 1:&#10;Week 2:&#10;Week 3:&#10;Week 4:"
+            required
+          ></textarea>
+
+          <div style="margin-top:8px; display:flex; justify-content:flex-end;">
+            <button class="btn primary" type="submit">
+              Submit links
+            </button>
+          </div>
+        </form>
+        <!-- End form -->
+      </div>
+
+      <!-- Small box: privacy reminder and help -->
+      <div class="card" style="margin-top:14px; padding:14px;">
+        <h2 style="margin:6px 0 6px;">Privacy and getting help</h2>
+        <dl>
+          <dt>Privacy</dt>
+          <dd>Before you send a chat, you can scroll through it and remove any private details (for example, names, phone numbers, or addresses) if you wish.</dd>
+
+          <dt>Need help?</dt>
+          <dd>If you are unsure at any step, please call us at <a href="tel:+12368084099">(236)808-4099</a> and we can walk you through it over the phone.</dd>
+        </dl>
+      </div>
+
+      <!-- Bottom row: just Back to Home -->
+      <div class="cta-row" style="margin-top:12px;">
+        <a class="btn" href="index.html" aria-label="Back to home (bottom)">← Back to Home</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap" style="display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;">
+      <div class="fine">© <span id="y"></span> CapU Honours Study • Built for outreach & recruitment</div>
+      <div class="badge" aria-label="Accessibility note">Accessible: captions ready · keyboard friendly</div>
+    </div>
+  </footer>
+
+  <script>
+    // Dynamic year
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    // Random day generator
+    function randomInt(min, max) {
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+    const generateBtn = document.getElementById('generateDaysBtn');
+    const dayWeek1El = document.getElementById('dayWeek1');
+    const dayWeek2El = document.getElementById('dayWeek2');
+    const dayWeek3El = document.getElementById('dayWeek3');
+    const dayWeek4El = document.getElementById('dayWeek4');
+
+    if (generateBtn) {
+      generateBtn.addEventListener('click', function () {
+        const d1 = randomInt(1, 7);    // Week 1: days 1–7
+        const d2 = randomInt(8, 14);   // Week 2: days 8–14
+        const d3 = randomInt(15, 21);  // Week 3: days 15–21
+        const d4 = randomInt(22, 28);  // Week 4: days 22–28
+
+        dayWeek1El.textContent = d1;
+        dayWeek2El.textContent = d2;
+        dayWeek3El.textContent = d3;
+        dayWeek4El.textContent = d4;
+
+        // Disable button after first generation
+        generateBtn.disabled = true;
+        generateBtn.textContent = 'Random days chosen';
+      });
+    }
+  </script>
+</body>
+</html>
