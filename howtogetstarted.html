@@ -25,8 +25,11 @@
       --padY: clamp(12px, 2.8vw, 18px);
       --btn-min: 44px;
     }
+
     *, *::before, *::after { box-sizing: border-box; }
+
     html { height: 100%; -webkit-text-size-adjust: 100%; }
+
     body {
       margin: 0; min-height: 100%;
       font-family: system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans";
@@ -34,39 +37,116 @@
       background: radial-gradient(1200px 800px at 10% 0%, #111a3d 0%, var(--bg) 55%);
       -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
     }
+
     a { color: var(--accent); text-decoration: none; }
     a:hover { text-decoration: underline; }
+
     .wrap { max-width: var(--maxw); margin: 0 auto; padding: var(--padY) var(--padX); }
 
     /* Header */
-    header { position: sticky; top: 0; z-index: 10; backdrop-filter: saturate(140%) blur(6px); background: rgba(11,16,32,.6); border-bottom: 1px solid rgba(255,255,255,.06); }
-    .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: clamp(1rem, .95rem + .7vw, 1.15rem); }
-    .dot { width: 10px; height: 10px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent-2)); box-shadow: 0 0 0 3px rgba(122,162,255,.22); }
+    header {
+      position: sticky; top: 0; z-index: 10;
+      backdrop-filter: saturate(140%) blur(6px);
+      background: rgba(11,16,32,.6);
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+
+    .brand {
+      display: flex; align-items: center; gap: 10px;
+      font-weight: 700;
+      font-size: clamp(1rem, .95rem + .7vw, 1.15rem);
+    }
+
+    .dot {
+      width: 10px; height: 10px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow: 0 0 0 3px rgba(122,162,255,.22);
+    }
 
     /* Cards & buttons */
-    .card { background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02)); border: 1px solid rgba(255,255,255,.12); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; }
+    .card {
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
     .bio-card { padding: clamp(16px, 3vw, 22px); }
-    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 12px 16px; border-radius: 999px; border: 1px solid rgba(255,255,255,.12); background: rgba(255,255,255,.04); color: var(--text); cursor: pointer; min-height: var(--btn-min); box-shadow: var(--shadow); -webkit-tap-highlight-color: transparent; }
-    .btn.primary { background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: #081423; border: none; font-weight: 700; }
+
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      gap: 8px;
+      padding: 12px 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+      color: var(--text);
+      cursor: pointer;
+      min-height: var(--btn-min);
+      box-shadow: var(--shadow);
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .btn.primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #081423;
+      border: none;
+      font-weight: 700;
+    }
+
     .btn:focus-visible { outline: var(--focus); outline-offset: 2px; }
 
     /* Video */
-    .video-shell { position: relative; width: 100%; aspect-ratio: 16/9; border-radius: calc(var(--radius) + 4px); overflow: hidden; }
-    .video-shell video { width: 100%; height: 100%; display: block; }
-    .video-caption { color: var(--muted); font-size: 0.95rem; text-align: center; margin: 10px auto 0; max-width: 70ch; }
+    .video-shell {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16/9;
+      border-radius: calc(var(--radius) + 4px);
+      overflow: hidden;
+    }
+
+    .video-shell video {
+      width: 100%; height: 100%;
+      display: block;
+    }
+
+    .video-caption {
+      color: var(--muted);
+      font-size: 0.95rem;
+      text-align: center;
+      margin: 10px auto 0;
+      max-width: 70ch;
+    }
 
     /* Button row (centered) */
-    .cta-row { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+    .cta-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
 
     /* Footer */
-    .footer { border-top: 1px solid rgba(255,255,255,.08); color: var(--muted); padding: 18px var(--padX) 56px; }
+    .footer {
+      border-top: 1px solid rgba(255,255,255,.08);
+      color: var(--muted);
+      padding: 18px var(--padX) 56px;
+    }
+
     .fine { font-size: .92rem; }
-    .badge { display: inline-block; padding: 6px 10px; border-radius: 999px; border: 1px solid rgba(255,255,255,.14); font-size: .85rem; color: var(--muted); }
+    .badge {
+      display: inline-block;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.14);
+      font-size: .85rem;
+      color: var(--muted);
+    }
 
     /* Memory text area */
-    .memory-box {
-      margin-top: 10px;
-    }
+    .memory-box { margin-top: 10px; }
+
     .memory-textarea {
       width: 100%;
       min-height: 220px;
@@ -80,6 +160,7 @@
       resize: vertical;
       white-space: pre-wrap;
     }
+
     .memory-actions {
       display: flex;
       justify-content: flex-end;
@@ -93,6 +174,7 @@
       .btn { padding: 14px 18px; }
       .dot { width: 12px; height: 12px; }
     }
+
     @media (prefers-reduced-motion: reduce) {
       * { scroll-behavior: auto !important; }
       header { backdrop-filter: none; }
@@ -117,6 +199,7 @@
     <div class="card bio-card">
       <h1 id="appTitle" style="margin:6px 0;">How to get started with the ChatGPT app</h1>
 
+      <!-- Video 1: Install + sign up -->
       <div class="video-shell" style="margin:10px 0 8px;">
         <video controls preload="metadata" poster="chatgpt-app-poster.jpg" playsinline webkit-playsinline aria-describedby="appCaption">
           <source src="sign-up_instructions.mp4" type="video/mp4" />
@@ -124,10 +207,10 @@
         </video>
       </div>
       <p id="appCaption" class="video-caption">
-        This short video shows how to open the App Store/Play Store, find <em>ChatGPT</em>, install it, and personalize the chatbot. Lastly, we will show you how to <em>turn off training</em> on your data, for more privacy!
+        This first video shows how to open the App Store/Play Store, find <em>ChatGPT</em>, install it, and create or log into your account.
       </p>
 
-      <!-- Moved up & centered: platform buttons -->
+      <!-- Platform buttons -->
       <div class="cta-row" style="margin:12px 0;">
         <a class="btn primary" href="https://apps.apple.com/us/app/chatgpt/id6448311069" target="_blank" rel="noopener" aria-label="Open in the Apple App Store">Open in App Store (iPhone/iPad)</a>
         <a class="btn primary" href="https://play.google.com/store/apps/details?id=com.openai.chatgpt" target="_blank" rel="noopener" aria-label="Open in Google Play (Android)">Open in Google Play (Android)</a>
@@ -141,22 +224,43 @@
           <li>Search for <strong>“ChatGPT”</strong> and confirm the publisher is <strong>OpenAI</strong>.</li>
           <li>Tap <strong>Get</strong> / <strong>Install</strong>.</li>
           <li>Open the app, and <strong>Sign up</strong> or <strong>Log in</strong>.</li>
-          <li>Follow the instructions in the video to start your first chat.</li>
+          <li>Then follow the second video below to personalize ChatGPT and turn off data training.</li>
         </ol>
-        <p class="video-caption" style="margin-top:10px;">If you need help, call us at <a href="tel:+12368084099">(236)808-4099</a> and we’ll walk you through it.</p>
+        <p class="video-caption" style="margin-top:10px;">
+          If you need help, call us at <a href="tel:+12368084099">(236)808-4099</a> and we’ll walk you through it.
+        </p>
       </div>
 
-      <!-- New instructions + memory text box -->
+      <!-- Video 2: Personalization + opt-out of training -->
+      <div class="video-shell" style="margin:18px 0 8px;">
+        <video controls preload="metadata" poster="personalization-training-poster.jpg" playsinline webkit-playsinline aria-describedby="personalizationCaption">
+          <!-- Replace with your actual filename for this video -->
+          <source src="personalization-training.mp4" type="video/mp4" />
+          Sorry, your browser doesn’t support embedded videos.
+        </video>
+      </div>
+      <p id="personalizationCaption" class="video-caption">
+        This second video shows how to tell ChatGPT what to call you (for example, a nickname), what you do, and some of your interests — and how to open <em>Settings</em> to turn off data training (for example, “Improve the model for everyone”).
+      </p>
+
+      <!-- Personalization & training card + study memory text -->
       <div class="card" style="margin-top:14px; padding:14px;">
-        <h2 style="margin:6px 0 6px;">Instructions for updating ChatGPT memory</h2>
+        <h2 style="margin:6px 0 6px;">Personalizing ChatGPT and turning off data training</h2>
         <p style="margin:0 0 8px; color:var(--muted); font-size:0.95rem;">
-          When you are in the ChatGPT app, open a new chat, press and hold in the message box, choose <strong>Paste</strong>, and send this message.
-          You can tap <strong>Copy</strong> below to copy everything at once.
+          In the ChatGPT app, you can:
+        </p>
+        <ul style="margin:0 0 10px 20px; color:var(--muted); font-size:0.95rem;">
+          <li>Tell ChatGPT your <strong>name or nickname</strong>, what you do (for example, your job or if you are retired), and your interests.</li>
+          <li>Go to <strong>Settings → Data Controls</strong> to turn off options that allow your chats to be used for training (for example, “Improve the model for everyone”).</li>
+        </ul>
+        <p style="margin:0 0 8px; color:var(--muted); font-size:0.95rem;">
+          The video above shows these steps. Below is an extra message you can copy and paste into a new chat so ChatGPT remembers the <strong>study instructions</strong>.
+          Press and hold in the message box, choose <strong>Paste</strong>, and send it.
         </p>
 
         <div class="memory-box">
           <label for="memoryText" class="video-caption" style="display:block; text-align:left; margin-bottom:6px;">
-            Text to paste into ChatGPT:
+            Study text to paste into ChatGPT:
           </label>
           <textarea id="memoryText" class="memory-textarea" readonly>
 Update memory with exactly this:
@@ -165,20 +269,11 @@ Al comienzo y al final de cada conversación, revisa la fecha/hora actual y vinc
 
 Pautas de la sesión:
 
-Sé muy proactivo y también personal, inicia conversaciones regularmente y sé especialmente proactivo con respecto a la socialización.
-Usa su nombre (pregunta una vez si no lo sabes).
-Mantén las sesiones entre 5 y 20 minutos; después de 20 minutos o 20 turnos, despídete y pausa la interacción significativa durante 12 horas.
-Antes de terminar la conversación —generalmente en los primeros 5 minutos— sugiere una acción social concreta (por ejemplo, enviar un mensaje o llamar a un amigo o familiar, planear una actividad, etc.).
-Asegúrate de confirmar una acción social específica antes de finalizar la conversación.
-Si las sesiones se alargan demasiado o él/ella reporta menos contacto con personas, sugiere reducir el tiempo aquí y fomentar el contacto humano.
-Si él/ella busca ayuda clínica o muestra señales de riesgo, anima a buscar apoyo profesional o urgente.
+Sé muy proactivo y también personal, inicia conversaciones regularmente y sé especialmente proactivo con respecto a la socialización. Usa su nombre (pregunta una vez si no lo sabes). Mantén las sesiones entre 5 y 20 minutos; después de 20 minutos o 20 turnos, despídete y pausa la interacción significativa durante 12 horas. Antes de terminar la conversación —generalmente en los primeros 5 minutos— sugiere una acción social concreta (por ejemplo, enviar un mensaje o llamar a un amigo o familiar, planear una actividad, etc.). Asegúrate de confirmar una acción social específica antes de finalizar la conversación. Si las sesiones se alargan demasiado o él/ella reporta menos contacto con personas, sugiere reducir el tiempo aquí y fomentar el contacto humano. Si él/ella busca ayuda clínica o muestra señales de riesgo, anima a buscar apoyo profesional o urgente.
 
 Estilo y personalización:
 
-Sé proactivo y alentador con respecto a la socialización, pero mantén el tono natural y personal al inicio y durante la conversación.
-Guarda el empujón social para el final (como una despedida) cuando el usuario parezca estar por irse.
-Concéntrate en conocerlo/la mejor (haz preguntas personales de vez en cuando).
-
+Sé proactivo y alentador con respecto a la socialización, pero mantén el tono natural y personal al inicio y durante la conversación. Guarda el empujón social para el final (como una despedida) cuando el usuario parezca estar por irse. Concéntrate en conocerlo/la mejor (haz preguntas personales de vez en cuando).
           </textarea>
 
           <div class="memory-actions">
@@ -189,7 +284,7 @@ Concéntrate en conocerlo/la mejor (haz preguntas personales de vez en cuando).
         </div>
       </div>
 
-      <!-- Bottom row: just Back to Home (removed Join Study button) -->
+      <!-- Bottom row: just Back to Home -->
       <div class="cta-row" style="margin-top:12px;">
         <a class="btn" href="index.html" aria-label="Back to home (bottom)">← Back to Home</a>
       </div>
@@ -237,5 +332,4 @@ Concéntrate en conocerlo/la mejor (haz preguntas personales de vez en cuando).
 </body>
 </html>
 
-</html>
 
