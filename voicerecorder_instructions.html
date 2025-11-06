@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>How to download and use the voice recorder – Honours Study</title>
+  <meta name="description" content="Step-by-step instructions to install and use a simple Voice Recorder app for the Honours study." />
+  <meta name="theme-color" content="#0b1020" />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="preload" as="image" href="voice-recorder-poster.jpg" />
+  <style>
+    /* Theme */
+    :root {
+      --bg: #0b1020;
+      --card: #121832;
+      --text: #e9ecf5;
+      --muted: #b6bed6;
+      --accent: #7aa2ff;
+      --accent-2: #4de1c1;
+      --radius: 18px;
+      --shadow: 0 8px 24px rgba(8,12,28,.4);
+      --focus: 3px solid rgba(122,162,255,.6);
+      --maxw: 1080px;
+      --padX: clamp(14px, 3.5vw, 24px);
+      --padY: clamp(12px, 2.8vw, 18px);
+      --btn-min: 44px;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { height: 100%; -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0; min-height: 100%;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans";
+      color: var(--text); line-height: 1.55;
+      background: radial-gradient(1200px 800px at 10% 0%, #111a3d 0%, var(--bg) 55%);
+      -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .wrap { max-width: var(--maxw); margin: 0 auto; padding: var(--padY) var(--padX); }
+
+    /* Header */
+    header { position: sticky; top: 0; z-index: 10; backdrop-filter: saturate(140%) blur(6px); background: rgba(11,16,32,.6); border-bottom: 1px solid rgba(255,255,255,.06); }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: clamp(1rem, .95rem + .7vw, 1.15rem); }
+    .dot { width: 10px; height: 10px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent-2)); box-shadow: 0 0 0 3px rgba(122,162,255,.22); }
+
+    /* Cards & buttons */
+    .card { background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02)); border: 1px solid rgba(255,255,255,.12); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; }
+    .bio-card { padding: clamp(16px, 3vw, 22px); }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 12px 16px; border-radius: 999px; border: 1px solid rgba(255,255,255,.12); background: rgba(255,255,255,.04); color: var(--text); cursor: pointer; min-height: var(--btn-min); box-shadow: var(--shadow); -webkit-tap-highlight-color: transparent; }
+    .btn.primary { background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: #081423; border: none; font-weight: 700; }
+    .btn:focus-visible { outline: var(--focus); outline-offset: 2px; }
+
+    /* Video */
+    .video-shell { position: relative; width: 100%; aspect-ratio: 16/9; border-radius: calc(var(--radius) + 4px); overflow: hidden; }
+    .video-shell video { width: 100%; height: 100%; display: block; }
+    .video-caption { color: var(--muted); font-size: 0.95rem; text-align: center; margin: 10px auto 0; max-width: 70ch; }
+
+    /* Button row (centered) */
+    .cta-row { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+
+    /* Footer */
+    .footer { border-top: 1px solid rgba(255,255,255,.08); color: var(--muted); padding: 18px var(--padX) 56px; }
+    .fine { font-size: .92rem; }
+    .badge { display: inline-block; padding: 6px 10px; border-radius: 999px; border: 1px solid rgba(255,255,255,.14); font-size: .85rem; color: var(--muted); }
+
+    /* Memory box styles (left in case you reuse later) */
+    .memory-box {
+      margin-top: 10px;
+    }
+    .memory-textarea {
+      width: 100%;
+      min-height: 220px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,.16);
+      padding: 10px 12px;
+      background: rgba(5,8,20,.8);
+      color: var(--text);
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans";
+      font-size: 0.9rem;
+      resize: vertical;
+      white-space: pre-wrap;
+    }
+    .memory-actions {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 8px;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    /* Mobile tweaks */
+    @media (hover: none) and (pointer: coarse) {
+      .btn { padding: 14px 18px; }
+      .dot { width: 12px; height: 12px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      * { scroll-behavior: auto !important; }
+      header { backdrop-filter: none; }
+    }
+  </style>
+</head>
+<body>
+  <header aria-label="Study header">
+    <div class="wrap" style="display:flex; align-items:center; justify-content:space-between; gap:12px;">
+      <div class="brand">
+        <div class="dot" aria-hidden="true"></div>
+        <div>Technological Talk Impact — Research Study</div>
+      </div>
+      <nav aria-label="Primary" style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+        <a class="btn" href="index.html" aria-label="Back to home">← Back to Home</a>
+        <a class="btn primary" href="join.html" aria-label="Join the study">Join the Study</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap" aria-labelledby="appTitle">
+    <div class="card bio-card">
+      <h1 id="appTitle" style="margin:6px 0;">How to download and use the Voice Recorder app</h1>
+
+      <div class="video-shell" style="margin:10px 0 8px;">
+        <video controls preload="metadata" poster="voice-recorder-poster.jpg" playsinline webkit-playsinline aria-describedby="appCaption">
+          <source src="voice-recorder-instructions.mp4" type="video/mp4" />
+          Sorry, your browser doesn’t support embedded videos.
+        </video>
+      </div>
+      <p id="appCaption" class="video-caption">
+        This short video shows how to open the App Store/Play Store, find <em>Voice Recorder</em>, install it, and make a test recording.
+      </p>
+
+      <!-- Centered platform buttons (Voice Recorder) -->
+      <div class="cta-row" style="margin:12px 0;">
+        <a class="btn primary"
+           href="https://apps.apple.com/us/app/voice-recorder-audio-editor/id685310398"
+           target="_blank" rel="noopener"
+           aria-label="Open Voice Recorder in the Apple App Store">
+          Download Voice Recorder (iPhone / iPad)
+        </a>
+        <a class="btn primary"
+           href="https://play.google.com/store/apps/details?id=com.media.bestrecorder.audiorecorder"
+           target="_blank" rel="noopener"
+           aria-label="Open Voice Recorder in Google Play for Android">
+          Download Voice Recorder (Android)
+        </a>
+      </div>
+
+      <!-- Quick steps card (voice recorder) -->
+      <div class="card" style="margin-top:14px; padding:14px;">
+        <h2 style="margin:6px 0 8px;">Quick steps (written)</h2>
+        <ol style="margin:0; padding-left:18px;">
+          <li>Open the <strong>App Store</strong> (iPhone/iPad) or <strong>Google Play</strong> (Android).</li>
+          <li>In the search box, type <strong>“Voice Recorder”</strong> and tap on the recorder app that matches the icon shown in the video.</li>
+          <li>Tap <strong>Get</strong> / <strong>Install</strong>. Wait for the app to finish downloading.</li>
+          <li>Open <strong>Voice Recorder</strong>. When asked, allow the app to use your <strong>microphone</strong> and <strong>files/storage</strong>.</li>
+          <li>To record: tap the <strong>red Record button</strong>, then tap <strong>Start</strong>. Speak clearly into the phone.</li>
+          <li>To stop: tap the <strong>Stop</strong> button. Your recording will be saved and appear in the list.</li>
+          <li>To listen: tap your recording in the list and press <strong>Play</strong>.</li>
+          <li>To share with the researcher: choose the <strong>Share/Export</strong> option in the app and follow the instructions given to you in the study.</li>
+        </ol>
+        <p class="video-caption" style="margin-top:10px;">If you need help, call us at <a href="tel:+12368084099">(236)808-4099</a> and we’ll walk you through it.</p>
+      </div>
+
+      <!-- Bottom row: just Back to Home -->
+      <div class="cta-row" style="margin-top:12px;">
+        <a class="btn" href="index.html" aria-label="Back to home (bottom)">← Back to Home</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap" style="display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;">
+      <div class="fine">© <span id="y"></span> CapU Honours Study • Built for outreach & recruitment</div>
+      <div class="badge" aria-label="Accessibility note">Accessible: captions ready · keyboard friendly</div>
+    </div>
+  </footer>
+
+  <script>
+    // Dynamic year
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
