@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>How to delete your ChatGPT account – Honours Study</title>
+  <meta name="description" content="Step-by-step instructions to delete your ChatGPT (OpenAI) account if you decide you no longer want it after the Honours study." />
+  <meta name="theme-color" content="#0b1020" />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="preload" as="image" href="delete-chatgpt-account-poster.jpg" />
+  <style>
+    /* Theme */
+    :root {
+      --bg: #0b1020;
+      --card: #121832;
+      --text: #e9ecf5;
+      --muted: #b6bed6;
+      --accent: #7aa2ff;
+      --accent-2: #4de1c1;
+      --radius: 18px;
+      --shadow: 0 8px 24px rgba(8,12,28,.4);
+      --focus: 3px solid rgba(122,162,255,.6);
+      --maxw: 1080px;
+      --padX: clamp(14px, 3.5vw, 24px);
+      --padY: clamp(12px, 2.8vw, 18px);
+      --btn-min: 44px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { height: 100%; -webkit-text-size-adjust: 100%; }
+
+    body {
+      margin: 0;
+      min-height: 100%;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans";
+      color: var(--text);
+      line-height: 1.55;
+      background: radial-gradient(1200px 800px at 10% 0%, #111a3d 0%, var(--bg) 55%);
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .wrap {
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: var(--padY) var(--padX);
+    }
+
+    /* Header */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: saturate(140%) blur(6px);
+      background: rgba(11,16,32,.6);
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      font-size: clamp(1rem, .95rem + .7vw, 1.15rem);
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow: 0 0 0 3px rgba(122,162,255,.22);
+    }
+
+    /* Cards & buttons */
+    .card {
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .bio-card {
+      padding: clamp(16px, 3vw, 22px);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+      color: var(--text);
+      cursor: pointer;
+      min-height: var(--btn-min);
+      box-shadow: var(--shadow);
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .btn.primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #081423;
+      border: none;
+      font-weight: 700;
+    }
+
+    .btn:focus-visible {
+      outline: var(--focus);
+      outline-offset: 2px;
+    }
+
+    /* Video */
+    .video-shell {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16/9;
+      border-radius: calc(var(--radius) + 4px);
+      overflow: hidden;
+      background-size: cover;
+      background-position: center;
+      background-color: #000;
+    }
+
+    .video-shell video {
+      width: 100%;
+      height: 100%;
+      display: block;
+      background: transparent;
+    }
+
+    .video-caption {
+      color: var(--muted);
+      font-size: 0.95rem;
+      text-align: center;
+      margin: 10px auto 0;
+      max-width: 70ch;
+    }
+
+    /* Play overlay icon */
+    .video-shell::after {
+      content: '▶';
+      position: absolute;
+      inset: 0;
+      margin: auto;
+      width: 72px;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.55);
+      font-size: 32px;
+      line-height: 1;
+      text-indent: 4px;
+      color: #ffffff;
+      pointer-events: none;
+      opacity: 0.9;
+      transition: opacity 0.18s ease-out, transform 0.18s ease-out;
+      transform: scale(1);
+    }
+
+    .video-shell.is-playing::after {
+      opacity: 0;
+      transform: scale(0.8);
+    }
+
+    /* Button row */
+    .cta-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    /* Footer */
+    .footer {
+      border-top: 1px solid rgba(255,255,255,.08);
+      color: var(--muted);
+      padding: 18px var(--padX) 56px;
+    }
+
+    .fine { font-size: .92rem; }
+    .badge {
+      display: inline-block;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.14);
+      font-size: .85rem;
+      color: var(--muted);
+    }
+
+    /* Mobile tweaks */
+    @media (hover: none) and (pointer: coarse) {
+      .btn { padding: 14px 18px; }
+      .dot { width: 12px; height: 12px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { scroll-behavior: auto !important; }
+      header { backdrop-filter: none; }
+    }
+  </style>
+</head>
+<body>
+  <header aria-label="Study header">
+    <div class="wrap" style="display:flex; align-items:center; justify-content:space-between; gap:12px;">
+      <div class="brand">
+        <div class="dot" aria-hidden="true"></div>
+        <div>Technological Talk Impact — Research Study</div>
+      </div>
+      <nav aria-label="Primary" style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+        <a class="btn" href="index.html" aria-label="Back to home">← Back to Home</a>
+        <a class="btn primary" href="join.html" aria-label="Join the study">Join the Study</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap" aria-labelledby="deleteTitle">
+    <div class="card bio-card">
+      <h1 id="deleteTitle" style="margin:6px 0;">How to delete your ChatGPT account</h1>
+      <p style="margin:4px 0 10px; color:var(--muted); max-width:70ch; font-size:0.98rem;">
+        If you decide that you no longer want a ChatGPT (OpenAI) account after the study, you can permanently delete it. 
+        The video below shows the process step by step for the ChatGPT website and the mobile apps.
+      </p>
+
+      <!-- Video: How to delete ChatGPT account -->
+      <div class="video-shell" style="margin:10px 0 8px;">
+        <video controls preload="metadata" poster="delete-chatgpt-account-poster.jpg" playsinline webkit-playsinline aria-describedby="deleteCaption">
+          <!-- Replace with your actual filename for this video -->
+          <source src="delete-chatgpt-account_instructions.mp4" type="video/mp4" />
+          Sorry, your browser doesn’t support embedded videos.
+        </video>
+      </div>
+      <p id="deleteCaption" class="video-caption">
+        This video shows how to open your ChatGPT account settings on the website or mobile app and use the <strong>Delete account</strong> option to permanently remove your account.
+      </p>
+
+      <!-- Quick steps card -->
+      <div class="card" style="margin-top:14px; padding:14px;">
+        <h2 style="margin:6px 0 8px;">Quick steps (summary)</h2>
+        <ol style="margin:0; padding-left:18px;">
+          <li>Open <strong>ChatGPT</strong> (on the website or in the app) and sign in to your account.</li>
+          <li>Go to your <strong>Settings</strong>.</li>
+          <li>Open the section called <strong>Account</strong> or <strong>Data Controls</strong>.</li>
+          <li>Choose <strong>Delete account</strong>.</li>
+          <li>Confirm that you want to permanently delete your account.</li>
+        </ol>
+
+        <p style="margin:10px 0 4px; color:var(--muted); font-size:0.95rem; font-weight:600;">
+          On the ChatGPT website (computer, tablet, or browser on your phone)
+        </p>
+        <ol style="margin:0 0 8px 18px; padding-left:0; color:var(--muted); font-size:0.95rem;">
+          <li>Go to <strong>chatgpt.com</strong> (or <strong>chat.openai.com</strong>) and sign in.</li>
+          <li>Click your <strong>profile icon</strong> in the top right corner.</li>
+          <li>Click <strong>Settings</strong>.</li>
+          <li>In Settings, click <strong>Account</strong>.</li>
+          <li>Under <strong>Delete account</strong>, click <strong>Delete</strong>.</li>
+          <li>Follow the on-screen steps to confirm and permanently delete your account.</li>
+        </ol>
+
+        <p style="margin:8px 0 4px; color:var(--muted); font-size:0.95rem; font-weight:600;">
+          In the ChatGPT iPhone or iPad app
+        </p>
+        <ol style="margin:0 0 8px 18px; padding-left:0; color:var(--muted); font-size:0.95rem;">
+          <li>Open the <strong>ChatGPT</strong> app and make sure you are signed in.</li>
+          <li>Open your <strong>account settings</strong> (tap your name or profile).</li>
+          <li>Tap <strong>Data Controls</strong>.</li>
+          <li>Tap <strong>Delete Account</strong>.</li>
+          <li>Confirm by tapping <strong>Delete Account</strong> again.</li>
+        </ol>
+
+        <p style="margin:8px 0 4px; color:var(--muted); font-size:0.95rem; font-weight:600;">
+          In the ChatGPT Android app
+        </p>
+        <ol style="margin:0 0 8px 18px; padding-left:0; color:var(--muted); font-size:0.95rem;">
+          <li>Open the <strong>ChatGPT</strong> app and make sure you are signed in.</li>
+          <li>Tap the menu icon to open the side menu.</li>
+          <li>Tap your name to open <strong>Settings</strong>.</li>
+          <li>Go to <strong>Data Controls</strong>.</li>
+          <li>Tap <strong>Delete Account</strong>, then confirm the deletion when asked.</li>
+        </ol>
+
+        <p style="margin:8px 0 0; color:var(--muted); font-size:0.9rem;">
+          If you need help at any point, call us at <a href="tel:+12368084099">(236)808-4099</a> and we can guide you through the steps.
+        </p>
+      </div>
+
+      <!-- Optional note card -->
+      <div class="card" style="margin-top:14px; padding:14px;">
+        <h2 style="margin:6px 0 6px;">What happens when you delete your account?</h2>
+        <ul style="margin:0 0 8px 18px; color:var(--muted); font-size:0.95rem;">
+          <li>Your ChatGPT / OpenAI account is <strong>permanently deleted</strong>. You won’t be able to sign in with that account again.</li>
+          <li>Any active <strong>paid subscription (e.g., ChatGPT Plus)</strong> linked to that account is cancelled as part of the deletion process.</li>
+          <li>Your chats, custom instructions, and other account-level data are removed according to OpenAI’s data-retention policies.</li>
+          <li>If you ever want to use ChatGPT again in the future, you may need to create a new account, possibly with a different email address.</li>
+        </ul>
+        <p style="margin:0; color:var(--muted); font-size:0.9rem;">
+          For the purposes of this study, <strong>you do not have to delete your ChatGPT account</strong>. 
+          Simply removing the app from your phone after the study is enough. 
+          Deleting your account is optional and only needed if you personally wish to stop using ChatGPT altogether.
+        </p>
+      </div>
+
+      <!-- Bottom row: just Back to Home -->
+      <div class="cta-row" style="margin-top:12px;">
+        <a class="btn" href="index.html" aria-label="Back to home (bottom)">← Back to Home</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap" style="display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;">
+      <div class="fine">© <span id="y"></span> CapU Honours Study • Built for outreach & recruitment</div>
+      <div class="badge" aria-label="Accessibility note">Accessible: captions ready · keyboard friendly</div>
+    </div>
+  </footer>
+
+  <script>
+    // Dynamic year
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    // Toggle play overlay visibility based on video state
+    (function () {
+      const shells = document.querySelectorAll('.video-shell');
+      shells.forEach(shell => {
+        const video = shell.querySelector('video');
+        if (!video) return;
+
+        const updateOverlay = () => {
+          if (video.paused) {
+            shell.classList.remove('is-playing');
+          } else {
+            shell.classList.add('is-playing');
+          }
+        };
+
+        video.addEventListener('play', updateOverlay);
+        video.addEventListener('pause', updateOverlay);
+        video.addEventListener('ended', updateOverlay);
+
+        // initial state
+        updateOverlay();
+      });
+    })();
+
+    // Use the video's poster as the background image of the shell
+    (function () {
+      const shells = document.querySelectorAll('.video-shell');
+      shells.forEach(shell => {
+        const video = shell.querySelector('video');
+        if (video && video.poster) {
+          shell.style.backgroundImage = 'url("' + video.poster + '")';
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
