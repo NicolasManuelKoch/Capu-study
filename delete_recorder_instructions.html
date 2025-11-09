@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>How to delete the voice recorder app – Honours Study</title>
+  <meta name="description" content="Step-by-step instructions to remove the voice recorder app from your phone after the Honours study." />
+  <meta name="theme-color" content="#0b1020" />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="preload" as="image" href="delete-voice-recorder-poster.jpg" />
+  <style>
+    /* Theme */
+    :root {
+      --bg: #0b1020;
+      --card: #121832;
+      --text: #e9ecf5;
+      --muted: #b6bed6;
+      --accent: #7aa2ff;
+      --accent-2: #4de1c1;
+      --radius: 18px;
+      --shadow: 0 8px 24px rgba(8,12,28,.4);
+      --focus: 3px solid rgba(122,162,255,.6);
+      --maxw: 1080px;
+      --padX: clamp(14px, 3.5vw, 24px);
+      --padY: clamp(12px, 2.8vw, 18px);
+      --btn-min: 44px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { height: 100%; -webkit-text-size-adjust: 100%; }
+
+    body {
+      margin: 0;
+      min-height: 100%;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans";
+      color: var(--text);
+      line-height: 1.55;
+      background: radial-gradient(1200px 800px at 10% 0%, #111a3d 0%, var(--bg) 55%);
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .wrap {
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: var(--padY) var(--padX);
+    }
+
+    /* Header */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: saturate(140%) blur(6px);
+      background: rgba(11,16,32,.6);
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      font-size: clamp(1rem, .95rem + .7vw, 1.15rem);
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow: 0 0 0 3px rgba(122,162,255,.22);
+    }
+
+    /* Cards & buttons */
+    .card {
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .bio-card {
+      padding: clamp(16px, 3vw, 22px);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+      color: var(--text);
+      cursor: pointer;
+      min-height: var(--btn-min);
+      box-shadow: var(--shadow);
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .btn.primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #081423;
+      border: none;
+      font-weight: 700;
+    }
+
+    .btn:focus-visible {
+      outline: var(--focus);
+      outline-offset: 2px;
+    }
+
+    /* Video */
+    .video-shell {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16/9;
+      border-radius: calc(var(--radius) + 4px);
+      overflow: hidden;
+      background-size: cover;
+      background-position: center;
+      background-color: #000;
+    }
+
+    .video-shell video {
+      width: 100%;
+      height: 100%;
+      display: block;
+      background: transparent;
+    }
+
+    .video-caption {
+      color: var(--muted);
+      font-size: 0.95rem;
+      text-align: center;
+      margin: 10px auto 0;
+      max-width: 70ch;
+    }
+
+    /* Play overlay icon */
+    .video-shell::after {
+      content: '▶';
+      position: absolute;
+      inset: 0;
+      margin: auto;
+      width: 72px;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.55);
+      font-size: 32px;
+      line-height: 1;
+      text-indent: 4px;
+      color: #ffffff;
+      pointer-events: none;
+      opacity: 0.9;
+      transition: opacity 0.18s ease-out, transform 0.18s ease-out;
+      transform: scale(1);
+    }
+
+    .video-shell.is-playing::after {
+      opacity: 0;
+      transform: scale(0.8);
+    }
+
+    /* Button row */
+    .cta-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    /* Footer */
+    .footer {
+      border-top: 1px solid rgba(255,255,255,.08);
+      color: var(--muted);
+      padding: 18px var(--padX) 56px;
+    }
+
+    .fine { font-size: .92rem; }
+    .badge {
+      display: inline-block;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.14);
+      font-size: .85rem;
+      color: var(--muted);
+    }
+
+    /* Mobile tweaks */
+    @media (hover: none) and (pointer: coarse) {
+      .btn { padding: 14px 18px; }
+      .dot { width: 12px; height: 12px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { scroll-behavior: auto !important; }
+      header { backdrop-filter: none; }
+    }
+  </style>
+</head>
+<body>
+  <header aria-label="Study header">
+    <div class="wrap" style="display:flex; align-items:center; justify-content:space-between; gap:12px;">
+      <div class="brand">
+        <div class="dot" aria-hidden="true"></div>
+        <div>Technological Talk Impact — Research Study</div>
+      </div>
+      <nav aria-label="Primary" style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+        <a class="btn" href="index.html" aria-label="Back to home">← Back to Home</a>
+        <a class="btn primary" href="join.html" aria-label="Join the study">Join the Study</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap" aria-labelledby="deleteVRTitle">
+    <div class="card bio-card">
+      <h1 id="deleteVRTitle" style="margin:6px 0;">How to delete the voice recorder app</h1>
+      <p style="margin:4px 0 10px; color:var(--muted); max-width:70ch; font-size:0.98rem;">
+        After the study, you may wish to remove the voice recorder app from your phone. 
+        The video below shows, step by step, how to delete the app from your home screen on iPhone and Android phones.
+      </p>
+
+      <!-- Video: How to delete voice recorder app -->
+      <div class="video-shell" style="margin:10px 0 8px;">
+        <video controls preload="metadata" poster="delete-voice-recorder-poster.jpg" playsinline webkit-playsinline aria-describedby="deleteVRCaption">
+          <!-- Replace with your actual filename for this video -->
+          <source src="delete_voice_recorder_instructions.mp4" type="video/mp4" />
+          Sorry, your browser doesn’t support embedded videos.
+        </video>
+      </div>
+      <p id="deleteVRCaption" class="video-caption">
+        This video shows how to find the voice recorder app you used in the study and delete it from your phone’s home screen.
+      </p>
+
+      <!-- Quick steps card -->
+      <div class="card" style="margin-top:14px; padding:14px;">
+        <h2 style="margin:6px 0 8px;">Quick steps (summary)</h2>
+        <ol style="margin:0; padding-left:18px;">
+          <li>Unlock your phone and find the <strong>voice recorder app</strong> you used for the study.</li>
+          <li>Touch and hold the app icon until a small menu or options appear.</li>
+          <li>Choose the option to <strong>Remove</strong>, <strong>Delete</strong>, or <strong>Uninstall</strong> the app.</li>
+          <li>Confirm that you want to delete the app when a message appears on screen.</li>
+        </ol>
+
+        <p style="margin:8px 0 4px; color:var(--muted); font-size:0.95rem; font-weight:600;">
+          On iPhone or iPad
+        </p>
+        <ol style="margin:0 0 8px 18px; padding-left:0; color:var(--muted); font-size:0.95rem;">
+          <li>Find the <strong>Voice Recorder</strong> app (or the app you used for the study) on your home screen.</li>
+          <li>Touch and hold the app icon until a menu appears.</li>
+          <li>Tap <strong>Remove App</strong>.</li>
+          <li>Tap <strong>Delete App</strong>.</li>
+          <li>Tap <strong>Delete</strong> again to confirm.</li>
+        </ol>
+
+        <p style="margin:8px 0 4px; color:var(--muted); font-size:0.95rem; font-weight:600;">
+          On Android phones
+        </p>
+        <ol style="margin:0 0 8px 18px; padding-left:0; color:var(--muted); font-size:0.95rem;">
+          <li>Find the <strong>voice recorder app</strong> icon on your home screen or in the app drawer.</li>
+          <li>Touch and hold the app icon.</li>
+          <li>Drag it to <strong>Uninstall</strong>, or tap the <strong>App info</strong> button.</li>
+          <li>Tap <strong>Uninstall</strong> or <strong>Delete</strong>.</li>
+          <li>Tap <strong>OK</strong> to confirm.</li>
+        </ol>
+
+        <p style="margin:8px 0 0; color:var(--muted); font-size:0.9rem;">
+          If you need help at any point, call us at <a href="tel:+12368084099">(236)808-4099</a> and we can guide you through the steps.
+        </p>
+      </div>
+
+      <!-- Optional note card -->
+      <div class="card" style="margin-top:14px; padding:14px;">
+        <h2 style="margin:6px 0 6px;">What happens when you delete the app?</h2>
+        <ul style="margin:0 0 8px 18px; color:var(--muted); font-size:0.95rem;">
+          <li>The voice recorder app is removed from your phone, and you will no longer see it on your home screen.</li>
+          <li>Any recordings saved <strong>inside the app only</strong> may be removed if you delete the app. Recordings you have already backed up elsewhere (for example, sent to the research team or saved to cloud storage) are not affected.</li>
+          <li>If you later decide you want to use a voice recorder again, you can install the same app or a similar one from the App Store or Google Play Store.</li>
+        </ul>
+        <p style="margin:0; color:var(--muted); font-size:0.9rem;">
+          For the purposes of this study, <strong>you are welcome to delete the voice recorder app</strong> once you have finished all tasks. 
+          Keeping or deleting the app afterwards is entirely your choice.
+        </p>
+      </div>
+
+      <!-- Bottom row: just Back to Home -->
+      <div class="cta-row" style="margin-top:12px;">
+        <a class="btn" href="index.html" aria-label="Back to home (bottom)">← Back to Home</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap" style="display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;">
+      <div class="fine">© <span id="vr-year"></span> CapU Honours Study • Built for outreach & recruitment</div>
+      <div class="badge" aria-label="Accessibility note">Accessible: captions ready · keyboard friendly</div>
+    </div>
+  </footer>
+
+  <script>
+    // Dynamic year
+    document.getElementById('vr-year').textContent = new Date().getFullYear();
+
+    // Toggle play overlay visibility based on video state
+    (function () {
+      const shells = document.querySelectorAll('.video-shell');
+      shells.forEach(shell => {
+        const video = shell.querySelector('video');
+        if (!video) return;
+
+        const updateOverlay = () => {
+          if (video.paused) {
+            shell.classList.remove('is-playing');
+          } else {
+            shell.classList.add('is-playing');
+          }
+        };
+
+        video.addEventListener('play', updateOverlay);
+        video.addEventListener('pause', updateOverlay);
+        video.addEventListener('ended', updateOverlay);
+
+        // initial state
+        updateOverlay();
+      });
+    })();
+
+    // Use the video's poster as the background image of the shell
+    (function () {
+      const shells = document.querySelectorAll('.video-shell');
+      shells.forEach(shell => {
+        const video = shell.querySelector('video');
+        if (video && video.poster) {
+          shell.style.backgroundImage = 'url("' + video.poster + '")';
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
+
