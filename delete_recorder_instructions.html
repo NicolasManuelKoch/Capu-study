@@ -7,7 +7,6 @@
   <meta name="description" content="Step-by-step instructions to remove the voice recorder app from your phone after the Honours study." />
   <meta name="theme-color" content="#0b1020" />
   <meta name="robots" content="noindex, nofollow" />
-  <link rel="preload" as="image" href="delete-voice-recorder-poster.jpg" />
   <style>
     /* Theme */
     :root {
@@ -116,61 +115,6 @@
       outline-offset: 2px;
     }
 
-    /* Video */
-    .video-shell {
-      position: relative;
-      width: 100%;
-      aspect-ratio: 16/9;
-      border-radius: calc(var(--radius) + 4px);
-      overflow: hidden;
-      background-size: cover;
-      background-position: center;
-      background-color: #000;
-    }
-
-    .video-shell video {
-      width: 100%;
-      height: 100%;
-      display: block;
-      background: transparent;
-    }
-
-    .video-caption {
-      color: var(--muted);
-      font-size: 0.95rem;
-      text-align: center;
-      margin: 10px auto 0;
-      max-width: 70ch;
-    }
-
-    /* Play overlay icon */
-    .video-shell::after {
-      content: '▶';
-      position: absolute;
-      inset: 0;
-      margin: auto;
-      width: 72px;
-      height: 72px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 50%;
-      background: rgba(0, 0, 0, 0.55);
-      font-size: 32px;
-      line-height: 1;
-      text-indent: 4px;
-      color: #ffffff;
-      pointer-events: none;
-      opacity: 0.9;
-      transition: opacity 0.18s ease-out, transform 0.18s ease-out;
-      transform: scale(1);
-    }
-
-    .video-shell.is-playing::after {
-      opacity: 0;
-      transform: scale(0.8);
-    }
-
     /* Button row */
     .cta-row {
       display: flex;
@@ -227,19 +171,7 @@
       <h1 id="deleteVRTitle" style="margin:6px 0;">How to delete the voice recorder app</h1>
       <p style="margin:4px 0 10px; color:var(--muted); max-width:70ch; font-size:0.98rem;">
         After the study, you may wish to remove the voice recorder app from your phone. 
-        The video below shows, step by step, how to delete the app from your home screen on iPhone and Android phones.
-      </p>
-
-      <!-- Video: How to delete voice recorder app -->
-      <div class="video-shell" style="margin:10px 0 8px;">
-        <video controls preload="metadata" poster="delete-voice-recorder-poster.jpg" playsinline webkit-playsinline aria-describedby="deleteVRCaption">
-          <!-- Replace with your actual filename for this video -->
-          <source src="delete_voice_recorder_instructions.mp4" type="video/mp4" />
-          Sorry, your browser doesn’t support embedded videos.
-        </video>
-      </div>
-      <p id="deleteVRCaption" class="video-caption">
-        This video shows how to find the voice recorder app you used in the study and delete it from your phone’s home screen.
+        The instructions below show, step by step, how to delete the app from your home screen on iPhone and Android phones.
       </p>
 
       <!-- Quick steps card -->
@@ -310,42 +242,9 @@
   <script>
     // Dynamic year
     document.getElementById('vr-year').textContent = new Date().getFullYear();
-
-    // Toggle play overlay visibility based on video state
-    (function () {
-      const shells = document.querySelectorAll('.video-shell');
-      shells.forEach(shell => {
-        const video = shell.querySelector('video');
-        if (!video) return;
-
-        const updateOverlay = () => {
-          if (video.paused) {
-            shell.classList.remove('is-playing');
-          } else {
-            shell.classList.add('is-playing');
-          }
-        };
-
-        video.addEventListener('play', updateOverlay);
-        video.addEventListener('pause', updateOverlay);
-        video.addEventListener('ended', updateOverlay);
-
-        // initial state
-        updateOverlay();
-      });
-    })();
-
-    // Use the video's poster as the background image of the shell
-    (function () {
-      const shells = document.querySelectorAll('.video-shell');
-      shells.forEach(shell => {
-        const video = shell.querySelector('video');
-        if (video && video.poster) {
-          shell.style.backgroundImage = 'url("' + video.poster + '")';
-        }
-      });
-    })();
   </script>
 </body>
 </html>
+
+
 
