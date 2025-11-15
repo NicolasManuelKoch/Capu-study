@@ -97,9 +97,9 @@
       background: rgba(0, 0, 0, 0.55);
       font-size: 32px;
       line-height: 1;
-      text-indent: 4px; /* slight nudge so triangle looks centered */
+      text-indent: 4px;
       color: #ffffff;
-      pointer-events: none; /* don't block clicks on the video controls */
+      pointer-events: none;
       opacity: 0.9;
       transition: opacity 0.18s ease-out, transform 0.18s ease-out;
       transform: scale(1);
@@ -117,7 +117,6 @@
 
     .bio-card { padding: clamp(16px, 3vw, 22px); }
 
-    /* Centered narrow container for About box */
     .centered-narrow { max-width: 860px; margin: 10px auto 0; }
 
     .footer { border-top: 1px solid rgba(255,255,255,0.08); color: var(--muted); padding: 18px var(--padX) 56px; }
@@ -125,7 +124,6 @@
     .badge { display: inline-block; padding: 6px 10px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.14); font-size: 0.85rem; color: var(--muted); }
     .spacer { height: 8px; }
 
-    /* Bottom horizontal strip for researcher + supervisor */
     .team-strip { margin: 22px auto 0; padding: 18px var(--padX); max-width: var(--maxw); }
     .team-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; align-items: start; }
     .person {
@@ -149,7 +147,6 @@
     .person h3 { margin: 4px 0 6px; font-size: clamp(1.05rem, 1rem + 0.8vw, 1.25rem); }
     .person p  { margin: 0; color: var(--muted); font-size: 0.98rem; }
 
-    /* Phone tweaks */
     @media (max-width: 720px) {
       .team-row { grid-template-columns: 1fr; }
       header { position: sticky; }
@@ -184,7 +181,6 @@
     #gate button { min-height: 44px; border-radius: 999px; border: none; padding: 10px 16px; font-weight: 700; cursor: pointer; background: linear-gradient(135deg, #7aa2ff, #4de1c1); color: #081423; }
     #gate .err { margin-top: 10px; color: #ff9aa2; font-size: 0.95rem; min-height: 1.2em; }
 
-    /* When locked, hide everything except the gate */
     html[data-locked="1"] body > :not(#gate) { display: none !important; }
     html[data-locked="0"] #gate { display: none !important; }
   </style>
@@ -215,13 +211,11 @@
       </div>
       <nav aria-label="Primary" style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
         <a class="btn primary" href="join_qualtrics.html" id="joinLink" aria-label="Join the study">Join the Study</a>
-        <!-- Mobile-only quick dial -->
         <a class="btn" href="tel:+12368084099" aria-label="Call the researcher" style="display:none;" id="callBtn">Call</a>
       </nav>
     </div>
   </header>
 
-  <!-- HOME PAGE -->
   <main id="home" class="page active" aria-labelledby="homeTitle">
     <section class="hero wrap">
       <div class="card" aria-label="Study introduction video">
@@ -236,14 +230,12 @@
       <div class="spacer"></div>
       <div class="wrap" style="display:flex; justify-content:center; margin-top:12px; padding: 0;">
         <div class="cta-row" style="justify-content:center;">
-          <!-- CHANGED href HERE -->
           <a class="btn primary" href="join_qualtrics.html" aria-label="Join the study (button under video)">Join the Study</a>
           <a class="btn" href="#details" aria-label="Scroll to details">See Details</a>
         </div>
       </div>
     </section>
 
-    <!-- Centered About box -->
     <div class="wrap centered-narrow">
       <div class="card bio-card" aria-label="Key details">
         <h2 id="homeTitle">Expected Start Date</h2>
@@ -286,17 +278,14 @@
     </section>
   </main>
 
-  <!-- BOTTOM HORIZONTAL STRIP (right above footer) -->
   <section class="team-strip wrap" aria-label="Researcher and Supervisor">
     <div class="team-row">
-      <!-- Researcher -->
       <div class="person" aria-label="Researcher profile">
         <img class="headshot" src="headshot.jpg" alt="Photo of researcher Nicolas M. Koch" loading="lazy" decoding="async">
         <h3>The Researcher: Nicolas M. Koch</h3>
         <p>Honours B.A. Psychology student at <strong>Capilano University</strong>.</p>
       </div>
 
-      <!-- Supervisor -->
       <div class="person" aria-label="Supervisor profile">
         <img class="headshot" src="supervisor.jpg" alt="Photo of research supervisor Dr. Lesley Schimanski" loading="lazy" decoding="async">
         <h3>Research Supervisor: Dr. Lesley Schimanski</h3>
@@ -305,17 +294,23 @@
     </div>
   </section>
 
-  <!-- NEW TEXTBOX: Talk data information -->
-<!-- DATA DURING STUDY TEXTBOX -->
+  <!-- DATA DURING STUDY TEXTBOX -->
   <section class="wrap centered-narrow" aria-labelledby="dataDuringStudyTitle">
     <div class="card bio-card">
       <h2 id="dataDuringStudyTitle">Regarding your data during this study</h2>
-      <p>
-        What you talk about with the AI chatbot will eventually be transcribed into text by the app, and stored on the companies (OpenAI) servers in the US, at least until you either delete the chat, or delete the account (we will provide a guide on how to do it). The research team will not have insight or control over this data. Further, the data may be used by OpenAI to train their models, unless you opt-out (the research team will provide you with a detailed step-by-step guide on how to opt-out).
-      </p>
-      <p style="margin-top:10px;">
-        What you talk about with the Voice Recorder will be stored on your phone. The research team will not have insight into this audio. After the study, you are welcome to delete this data if you like, or you can keep it.
-      </p>
+      <p class="lead">Here is an overview of what happens to your talk data during the study:</p>
+      <ul>
+        <li>
+          <strong>AI chatbot talks</strong> – What you talk about with the AI chatbot will eventually be transcribed into text by the app, and stored on the companies (OpenAI) servers in the US, at least until you either delete the chat, or delete the account (we will provide a guide on how to do it). The research team will not have insight or control over this data. Further, the data may be used by OpenAI to train their models, unless you opt-out (the research team will provide you with a detailed step-by-step guide on how to opt-out).
+        </li>
+        <li>
+          <strong>Voice Recorder daily diaries</strong> – What you talk about with the Voice Recorder will be stored on your phone. The research team will not have insight into this audio. After the study, you are welcome to delete this data if you like, or you can keep it.
+        </li>
+        <li>
+          <strong>Location of servers &amp; privacy laws</strong> – Any data associated with the AI chatbot talk (and, depending on your device and backup settings, possibly your daily diary recordings) that is stored on computer servers located outside Canada is not protected by Canadian privacy legislation, and may be accessed by the U.S. government since it is subject to the U.S. Patriot Act (see
+          <a href="https://openai.com/policies/row-privacy-policy" target="_blank" rel="noopener noreferrer">OpenAI’s Privacy Policy</a>).
+        </li>
+      </ul>
     </div>
   </section>
 
@@ -327,10 +322,8 @@
   </footer>
 
   <script>
-    // Dynamic year
     document.getElementById('y').textContent = new Date().getFullYear();
 
-    // Smooth scroll for internal sections on HOME page
     document.querySelectorAll('#home a[href^="#"]').forEach(a => {
       a.addEventListener('click', e => {
         const href = a.getAttribute('href');
@@ -341,12 +334,10 @@
       });
     });
 
-    // Mobile-only quick dial appears if touch device
     const callBtn = document.getElementById('callBtn');
     const isCoarse = matchMedia('(hover: none) and (pointer: coarse)').matches;
     if (isCoarse) callBtn.style.display = 'inline-flex';
 
-    // Large Text toggle (persists)
     (function(){
       const LS_KEY = 'largeText';
       function setScale(on){
@@ -367,14 +358,13 @@
       }
     })();
 
-    // Force-download Participant Information flyer (robust on mobile)
     (function(){
       const btn = document.getElementById('piBtn');
       if (!btn) return;
       const filePath = 'flyer.pdf';
       const fileName = 'CapU-Honours-Study-Flyer.pdf';
       btn.addEventListener('click', async function(e){
-        if ('download' in HTMLAnchorElement.prototype) return; // native support
+        if ('download' in HTMLAnchorElement.prototype) return;
         e.preventDefault();
         try {
           const res = await fetch(filePath, { cache: 'no-store' });
@@ -390,10 +380,7 @@
         }
       });
     })();
-  </script>
 
-  <script>
-    // Simple one-time password gate (client-side). Note: suitable for low-sensitivity info.
     (function(){
       const PASS_HASH = 'd6af24ec92bf6475fa595638bbeb4dceadd2cd5748dfbc4a4a93c7c57e25e2ec'; // sha-256 of "capustudy2026"
       const LS_KEY = 'capu_auth_v1';
@@ -411,7 +398,6 @@
       function unlock(){
         try{ localStorage.setItem(LS_KEY, PASS_HASH); }catch(e){}
         $html.setAttribute('data-locked','0');
-        // Focus main landmark if present
         const main = document.querySelector('main.page.active') || document.querySelector('main');
         if (main) { main.setAttribute('tabindex','-1'); main.focus(); }
       }
@@ -437,17 +423,13 @@
 
       check();
     })();
-  </script>
 
-  <script>
-    // Toggle play overlay visibility + use poster as background for hero video
     (function () {
       const shells = document.querySelectorAll('.video-shell');
       shells.forEach(shell => {
         const video = shell.querySelector('video');
         if (!video) return;
 
-        // Use poster as background image if available
         if (video.poster) {
           shell.style.backgroundImage = 'url("' + video.poster + '")';
         }
@@ -464,13 +446,13 @@
         video.addEventListener('pause', updateOverlay);
         video.addEventListener('ended', updateOverlay);
 
-        // Initial state
         updateOverlay();
       });
     })();
   </script>
 </body>
 </html>
+
 
 
 
