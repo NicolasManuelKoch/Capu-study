@@ -106,8 +106,8 @@
         <div>Technological Talk Impact — Research Study</div>
       </div>
       <nav aria-label="Primary" style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
-        <a class="btn" href="index.html" aria-label="Back to home">← Back to Home</a>
-        <a class="btn primary" href="join.html" aria-label="Join the study">Join the Study</a>
+        <a class="btn" ="index.html" aria-label="Back to home">← Back to Home</a>
+        <a class="btn primary" ="join.html" aria-label="Join the study">Join the Study</a>
       </nav>
     </div>
   </header>
@@ -231,45 +231,41 @@
         <h3 style="margin:12px 0 6px; font-size:1rem;">Step 3 – Put your four links together and send them</h3>
         <p style="margin:0 0 6px; color:var(--muted); font-size:0.95rem;">
           Paste the link for each week in the box below (for example: “Week 1: &hellip;”, “Week 2: &hellip;”), then press
-          <strong>Submit links</strong>. This will send your links to our secure survey page.
+          <strong>Submit links</strong>. This will open our secure survey page, where you can paste and submit your links.
         </p>
 
-        <!-- FORM: replace the action URL with your Qualtrics link -->
-        <form
-          id="chatLinksForm"
-          action="https://YOUR-QUALTRICS-LINK-GOES-HERE"
-          method="post"
-          target="_blank"
-        >
-          <label for="chatLinks" style="display:block; font-size:0.95rem; margin-bottom:4px;">
-            Your 4 chat links:
-          </label>
-          <textarea
-            id="chatLinks"
-            name="chat_links"
-            style="
-              width: 100%;
-              min-height: 160px;
-              border-radius: 12px;
-              border: 1px solid rgba(255,255,255,.16);
-              padding: 10px 12px;
-              background: rgba(5,8,20,.8);
-              color: var(--text);
-              font-family: system-ui, -apple-system, Segoe UI, Roboto, 'Helvetica Neue', Arial, 'Noto Sans';
-              font-size: 0.9rem;
-              resize: vertical;
-            "
-            placeholder="Week 1:&#10;Week 2:&#10;Week 3:&#10;Week 4:"
-            required
-          ></textarea>
+        <label for="chatLinks" style="display:block; font-size:0.95rem; margin-bottom:4px;">
+          Your 4 chat links:
+        </label>
+        <textarea
+          id="chatLinks"
+          style="
+            width: 100%;
+            min-height: 160px;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,.16);
+            padding: 10px 12px;
+            background: rgba(5,8,20,.8);
+            color: var(--text);
+            font-family: system-ui, -apple-system, Segoe UI, Roboto, 'Helvetica Neue', Arial, 'Noto Sans';
+            font-size: 0.9rem;
+            resize: vertical;
+          "
+          placeholder="Week 1:&#10;Week 2:&#10;Week 3:&#10;Week 4:"
+          required
+        ></textarea>
 
-          <div style="margin-top:8px; display:flex; justify-content:flex-end;">
-            <button class="btn primary" type="submit">
-              Submit links
-            </button>
-          </div>
-        </form>
-        <!-- End form -->
+        <div style="margin-top:8px; display:flex; justify-content:flex-end;">
+          <a
+            class="btn primary"
+            href="https://capilanopsych.qualtrics.com/jfe/form/SV_2ccH3PiMzzYjEyO"
+            target="_blank"
+            rel="noopener"
+            aria-label="Open secure Qualtrics survey to submit links"
+          >
+            Submit links
+          </a>
+        </div>
       </div>
 
       <!-- Small box: privacy reminder and help -->
@@ -333,4 +329,6 @@
   </script>
 </body>
 </html>
+
+
 
