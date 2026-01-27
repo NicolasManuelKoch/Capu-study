@@ -275,36 +275,35 @@
         This second video shows how to add the necessary memories and how to open <em>Settings</em> to turn off data training (“Improve the model for everyone”) without turning off chat history.
       </p>
 
-      <!-- Card 2: Update memory instructions -->
+           <!-- Card 2: Update personalization instructions -->
       <div class="card" style="margin-top:14px; padding:14px;">
-        <h2 style="margin:6px 0 6px;">Update memory with the study instructions</h2>
+        <h2 style="margin:6px 0 6px;">Add the study instructions to Personalization</h2>
         <p style="margin:0 0 8px; color:var(--muted); font-size:0.95rem;">
-          After turning off data training, please copy and paste the following message into a <strong>new chat</strong> with ChatGPT. This tells ChatGPT to remember the <strong>rules for this study</strong>.
+          After turning off data training, please copy and paste the following message into <strong>ChatGPT Personalization</strong> (Custom Instructions). This tells ChatGPT the <strong>rules for this study</strong>.
         </p>
         <p style="margin:0 0 8px; color:var(--muted); font-size:0.95rem;">
-          Press the <strong>“Copy”</strong> button, open the ChatGPT app, start a new conversation, <strong>Paste</strong> the text, and send it.
+          Press the <strong>“Copy”</strong> button, open the ChatGPT app, go to <strong>Settings → Personalization → Custom Instructions</strong>, <strong>Paste</strong> the text, and save it.
         </p>
 
         <div class="memory-box">
           <label for="memoryText" class="video-caption" style="display:block; text-align:left; margin-bottom:6px;">
-            <strong>!Must copy and paste into ChatGPT!:</strong>
+            <strong>!Must copy and paste into ChatGPT Personalization!:</strong>
           </label>
           <textarea id="memoryText" class="memory-textarea" readonly>
-Update memory with exactly this:
+*Wichtig: Stelle am Anfang immer eine Frage, um das Gespräch zu starten - außer ich springe sofort mit einem konkreten Anliegen ins Thema.* 
 
-Al comienzo y al final de cada conversación, revisa la fecha/hora actual y vincúlala a la conversación para tu propia referencia.
+Sozialer Impuls: Konzentriere dich auf mein Hauptziel: Schlage pro Gespräch mindestens eine konkrete soziale Handlung vor, innerhalb der ersten 5 minuten, und versuche festzulegen was und wann (z.B. familienmitglied/freund anrufen, jemanden zum Kaffee treffen, ins senior center gehen etc.). Das Ziel ist, mich zu mehr sozialen Interaktionen zu ermutigen (tue das in jedem Gespräch). 
 
-Pautas de la sesión:
+Ton: Natürlich und warm. Sehr proaktiv und persönlich. 
 
-Sé muy proactivo y también personal, inicia conversaciones regularmente y sé especialmente proactivo con respecto a la socialización. Usa su nombre (pregunta una vez si no lo sabes). Mantén las sesiones entre 5 y 20 minutos; después de 20 minutos o 20 turnos, despídete y pausa la interacción significativa durante 12 horas. Antes de terminar la conversación —generalmente en los primeros 5 minutos— sugiere una acción social concreta (por ejemplo, enviar un mensaje o llamar a un amigo o familiar, planear una actividad, etc.). Asegúrate de confirmar una acción social específica antes de finalizar la conversación. Si las sesiones se alargan demasiado o él/ella reporta menos contacto con personas, sugiere reducir el tiempo aquí y fomentar el contacto humano. Si él/ella busca ayuda clínica o muestra señales de riesgo, anima a buscar apoyo profesional o urgente.
+Name: Verwende meinen Namen, wenn du ihn kennst; sonst frage einmal danach und nutze ihn anschließend ganz selbstverständlich. 
 
-Estilo y personalización:
+Isolation/Risiko: Wenn ich wenig Kontakt in der realen Welt erwähne oder der Chat sehr lange wird, ermutige mich zu mehr menschlicher Verbindung. Wenn klinisches Risiko/Dringlichkeit erkennbar ist, ermutige zu professioneller Hilfe bzw. zu sofortiger Unterstützung. 
 
-Sé proactivo y alentador con respecto a la socialización, pero mantén el tono natural y personal al inicio y durante la conversación. Guarda el empujón social para el final (como una despedida) cuando el usuario parezca estar por irse. Concéntrate en conocerlo/la mejor (haz preguntas personales de vez en cuando).
-          </textarea>
+*Antworte immer in English.*</textarea>
 
           <div class="memory-actions">
-            <button class="btn primary" type="button" id="copyMemoryBtn" aria-label="Copy memory text">
+            <button class="btn primary" type="button" id="copyMemoryBtn" aria-label="Copy personalization text">
               Copy
             </button>
           </div>
