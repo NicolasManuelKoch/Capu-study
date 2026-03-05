@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-locked="1">
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -169,39 +169,8 @@
       header { padding-top:    max(0px, env(safe-area-inset-top)); }
     }
   </style>
-
-  <!-- Password gate styles -->
-  <style>
-    #gate { position: fixed; inset: 0; display: grid; place-items: center; background: radial-gradient(1200px 800px at 10% 0%, #111a3d 0%, #0b1020 55%); z-index: 2000; }
-    #gate .panel { width: min(520px, 92vw); background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02)); border: 1px solid rgba(255,255,255,0.14); border-radius: 18px; box-shadow: 0 8px 24px rgba(8, 12, 28, 0.4); padding: 20px; color: #e9ecf5; }
-    #gate h1 { margin: 0 0 8px; font-size: clamp(1.15rem, 1rem + 1.2vw, 1.6rem); }
-    #gate p  { margin: 0 0 12px; color: #b6bed6; }
-    #gate form { display: flex; gap: 10px; align-items: center; }
-    #gate input[type="password"] { flex: 1; min-height: 44px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.16); background: rgba(255,255,255,0.06); color: #e9ecf5; padding: 10px 12px; }
-    #gate button { min-height: 44px; border-radius: 999px; border: none; padding: 10px 16px; font-weight: 700; cursor: pointer; background: linear-gradient(135deg, #7aa2ff, #4de1c1); color: #081423; }
-    #gate .err { margin-top: 10px; color: #ff9aa2; font-size: 0.95rem; min-height: 1.2em; }
-
-    html[data-locked="1"] body > :not(#gate) { display: none !important; }
-    html[data-locked="0"] #gate { display: none !important; }
-  </style>
 </head>
 <body>
-  <!-- Password Gate -->
-  <div id="gate" role="dialog" aria-modal="true" aria-labelledby="gateTitle">
-    <div class="panel">
-      <h1 id="gateTitle">Enter Access Password</h1>
-      <p>This site is for invited participants. Please enter the password you received during onboarding.</p>
-      <form id="gateForm">
-        <label for="gatePw" class="sr-only" aria-label="Password"></label>
-        <input id="gatePw" type="password" inputmode="text" autocomplete="current-password" placeholder="Password" required aria-describedby="gateErr" />
-        <button type="submit">Unlock</button>
-      </form>
-      <div id="gateErr" class="err" role="status" aria-live="polite"></div>
-      <p style="margin-top:12px; font-size:0.92rem; opacity:.9;">Tip: You’ll only need to do this once on this device.</p>
-      <noscript><p class="err">JavaScript is required to access this site.</p></noscript>
-    </div>
-  </div>
-
   <header aria-label="Study header">
     <div class="wrap" style="display:flex; align-items:center; justify-content:space-between; gap:12px;">
       <div class="brand" aria-label="Study name">
@@ -378,49 +347,6 @@
           window.location.href = filePath;
         }
       });
-    })();
-
-    (function(){
-      const PASS_HASH = 'd6af24ec92bf6475fa595638bbeb4dceadd2cd5748dfbc4a4a93c7c57e25e2ec'; // sha-256 of "capustudy2026"
-      const LS_KEY = 'capu_auth_v1';
-      const $html = document.documentElement;
-      const $form = document.getElementById('gateForm');
-      const $pw = document.getElementById('gatePw');
-      const $err = document.getElementById('gateErr');
-
-      async function sha256Hex(str){
-        const buf = new TextEncoder().encode(str);
-        const digest = await crypto.subtle.digest('SHA-256', buf);
-        return Array.from(new Uint8Array(digest)).map(b=>b.toString(16).padStart(2,'0')).join('');
-      }
-
-      function unlock(){
-        try{ localStorage.setItem(LS_KEY, PASS_HASH); }catch(e){}
-        $html.setAttribute('data-locked','0');
-        const main = document.querySelector('main.page.active') || document.querySelector('main');
-        if (main) { main.setAttribute('tabindex','-1'); main.focus(); }
-      }
-
-      async function check(){
-        let ok = false;
-        try{ ok = (localStorage.getItem(LS_KEY) === PASS_HASH); }catch(e){}
-        if (ok) { unlock(); return; }
-        $html.setAttribute('data-locked','1');
-      }
-
-      if ($form) {
-        $form.addEventListener('submit', async (e)=>{
-          e.preventDefault();
-          $err.textContent = '';
-          const val = ($pw.value || '').trim();
-          if (!val) { $err.textContent = 'Please enter the password.'; return; }
-          const h = await sha256Hex(val);
-          if (h === PASS_HASH) { unlock(); }
-          else { $err.textContent = 'Incorrect password. Please try again.'; $pw.select(); }
-        });
-      }
-
-      check();
     })();
 
     (function () {
