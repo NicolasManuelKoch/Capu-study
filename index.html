@@ -7,6 +7,7 @@
   <meta name="description" content="Learn about our Honours study and how to participate. Watch the intro video, read a short researcher bio, and get in touch." />
   <meta name="theme-color" content="#0b1020" />
   <link rel="preload" as="image" href="hero-poster.jpg" />
+  <link rel="preload" as="video" href="introductionvideo.mp4" type="video/mp4" />
   <style>
     /* --- Mobile-first, accessible, responsive layout --- */
     :root {
@@ -189,7 +190,7 @@
     <section class="hero wrap">
       <div class="card" aria-label="Study introduction video">
         <div class="video-shell">
-          <video controls preload="metadata" poster="hero-poster.jpg" aria-describedby="videoCaption" playsinline webkit-playsinline>
+          <video controls preload="auto" autoplay muted loop poster="hero-poster.jpg" aria-describedby="videoCaption" playsinline webkit-playsinline>
             <source src="introductionvideo.mp4" type="video/mp4" />
             Sorry, your browser doesn’t support embedded videos.
           </video>
@@ -372,13 +373,17 @@
         video.addEventListener('ended', updateOverlay);
 
         updateOverlay();
+
+        // Try to autoplay (some browsers need an explicit play() call)
+        const prefersReduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const saveData = navigator.connection && navigator.connection.saveData;
+        if (!prefersReduced && !saveData) {
+          video.muted = true;
+          const p = video.play();
+          if (p && typeof p.catch === 'function') p.catch(() => {});
+        }
       });
     })();
   </script>
 </body>
 </html>
-
-
-
-
-
