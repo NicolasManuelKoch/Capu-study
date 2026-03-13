@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Honours Study – Participant Information</title>
+  <meta name="description" content="Learn about our Honours study and how to participate. Watch the intro video, read a short researcher bio, and get in touch." />
+  <meta name="theme-color" content="#f6f8fc" />
+  <link rel="preload" as="image" href="hero-poster.jpg" />
+  <link rel="preload" as="video" href="introductionvideo.mp4" type="video/mp4" />
+  <style>
+    /* --- Mobile-first, accessible, responsive layout --- */
+    :root {
+      --bg: #f6f8fc;
+      --card: #ffffff;
+      --text: #1c2430;
+      --muted: #5b6678;
+      --accent: #1f5eff;
+      --accent-2: #1fa3a3;
+      --radius: 18px;
+      --shadow: 0 10px 28px rgba(30, 50, 90, 0.08);
+      --focus: 3px solid rgba(31, 94, 255, 0.35);
+      --maxw: 1080px;
+      --padX: clamp(14px, 3.5vw, 24px);
+      --padY: clamp(12px, 2.8vw, 18px);
+      --btn-min: 44px; /* touch target */
+      --error: #b42318;
+      --ok: #027a48;
+      --fontScale: 1;   /* Large Text toggle scaling */
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { height: 100%; -webkit-text-size-adjust: 100%; }
+
+    body {
+      margin: 0;
+      min-height: 100%;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: calc(clamp(16px, 0.9rem + 0.2vw, 18px) * var(--fontScale));
+      line-height: 1.55;
+      color: var(--text);
+      background:
+        radial-gradient(1200px 800px at 10% 0%, #eef4ff 0%, #f6f8fc 55%),
+        linear-gradient(180deg, #f9fbff 0%, #f4f7fb 100%);
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .wrap { max-width: var(--maxw); margin: 0 auto; padding: var(--padY) var(--padX); }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: saturate(140%) blur(8px);
+      background: rgba(255, 255, 255, 0.88);
+      border-bottom: 1px solid rgba(28, 36, 48, 0.08);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      font-size: clamp(1rem, 0.95rem + 0.7vw, 1.15rem);
+    }
+
+    .brand .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow: 0 0 0 4px rgba(31, 94, 255, 0.12);
+    }
+
+    /* CapU logo styling */
+    .brand .capu-logo {
+      height: 30px;
+      width: auto;
+      display: block;
+    }
+
+    .cta-row { display: flex; gap: 10px; flex-wrap: wrap; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(28, 36, 48, 0.12);
+      background: #ffffff;
+      color: var(--text);
+      cursor: pointer;
+      box-shadow: var(--shadow);
+      min-height: var(--btn-min);
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .btn.primary {
+      background: linear-gradient(135deg, #2a67ff, #1f8cff);
+      color: #ffffff;
+      border: none;
+      font-weight: 700;
+    }
+
+    .btn:focus-visible { outline: var(--focus); outline-offset: 2px; }
+    .btn[disabled] { opacity: 0.6; cursor: not-allowed; }
+
+    .hero { padding: 24px var(--padX) 8px; }
+
+    .card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(248,250,253,0.98));
+      border: 1px solid rgba(28, 36, 48, 0.08);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    /* Video shell with background image + overlay play icon */
+    .video-shell {
+      position: relative;
+      width: 100%;
+      margin: 0 auto;
+      aspect-ratio: 16/9;
+      border-radius: calc(var(--radius) + 4px);
+      overflow: hidden;
+      background-size: cover;
+      background-position: center;
+      background-color: #dfe7f3;
+    }
+
+    .video-shell video, .video-shell iframe {
+      width: 100%;
+      height: 100%;
+      display: block;
+      background: transparent;
+    }
+
+    .video-caption {
+      color: var(--muted);
+      font-size: 0.95rem;
+      text-align: center;
+      margin: 10px auto 0;
+      max-width: 70ch;
+      padding: 0 var(--padX);
+    }
+
+    /* Play overlay icon */
+    .video-shell::after {
+      content: '▶';
+      position: absolute;
+      inset: 0;
+      margin: auto;
+      width: 72px;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: rgba(28, 36, 48, 0.62);
+      font-size: 32px;
+      line-height: 1;
+      text-indent: 4px;
+      color: #ffffff;
+      pointer-events: none;
+      opacity: 0.92;
+      transition: opacity 0.18s ease-out, transform 0.18s ease-out;
+      transform: scale(1);
+    }
+
+    .video-shell.is-playing::after {
+      opacity: 0;
+      transform: scale(0.8);
+    }
+
+    h1 { font-size: clamp(1.5rem, 1.15rem + 2.5vw, 2.4rem); margin: 0 0 8px; letter-spacing: 0.2px; }
+    h2 { font-size: clamp(1.1rem, 1rem + 1.2vw, 1.5rem); margin: 0 0 10px; }
+    p.lead { color: var(--muted); margin: 0 0 14px; }
+
+    ul { margin: 0; padding-left: 18px; }
+    li { margin-bottom: 10px; }
+
+    .bio-card { padding: clamp(16px, 3vw, 22px); }
+
+    .centered-narrow { max-width: 860px; margin: 10px auto 0; }
+
+    .footer {
+      border-top: 1px solid rgba(28, 36, 48, 0.08);
+      color: var(--muted);
+      padding: 18px var(--padX) 56px;
+    }
+
+    .fine { font-size: 0.92rem; }
+
+    .badge {
+      display: inline-block;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(28, 36, 48, 0.10);
+      font-size: 0.85rem;
+      color: var(--muted);
+      background: rgba(255,255,255,0.8);
+    }
+
+    .spacer { height: 8px; }
+
+    .team-strip { margin: 22px auto 0; padding: 18px var(--padX); max-width: var(--maxw); }
+
+    .team-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      align-items: start;
+    }
+
+    .person {
+      background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(248,250,253,0.98));
+      border: 1px solid rgba(28, 36, 48, 0.08);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 14px;
+      text-align: center;
+    }
+
+    .person .headshot {
+      width: 100%;
+      max-width: 320px;
+      aspect-ratio: 1/1;
+      object-fit: cover;
+      border-radius: var(--radius);
+      border: 1px solid rgba(28, 36, 48, 0.08);
+      display: block;
+      margin: 6px auto 10px;
+    }
+
+    .person h3 { margin: 4px 0 6px; font-size: clamp(1.05rem, 1rem + 0.8vw, 1.25rem); }
+
+    .person p  {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.98rem;
+    }
+
+    @media (max-width: 720px) {
+      .team-row { grid-template-columns: 1fr; }
+      header { position: sticky; }
+      .brand .capu-logo { height: 26px; }
+    }
+
+    @media (hover: none) and (pointer: coarse) {
+      .btn { padding: 14px 18px; }
+      .brand .dot { width: 12px; height: 12px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { scroll-behavior: auto !important; }
+      header { backdrop-filter: none; }
+    }
+  </style>
+
+  <!-- iPhone safe area -->
+  <style id="mobileEnhancements">
+    @supports (padding: max(0px)) {
+      body   { padding-bottom: max(0px, env(safe-area-inset-bottom)); }
+      header { padding-top:    max(0px, env(safe-area-inset-top)); }
+    }
+  </style>
+</head>
+<body>
+  <header aria-label="Study header">
+    <div class="wrap" style="display:flex; align-items:center; justify-content:space-between; gap:12px;">
+      <div class="brand" aria-label="Study name">
+        <img src="capu-logo.png" alt="Capilano University logo" class="capu-logo" loading="lazy" decoding="async" />
+        <div class="dot" aria-hidden="true"></div>
+        <div>Technological Talk Impact — Research Study</div>
+      </div>
+      <nav aria-label="Primary" style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+        <a class="btn primary" href="join_qualtrics.html" id="joinLink" aria-label="Join the study">Join the Study</a>
+        <a class="btn" href="tel:+12368084099" aria-label="Call the researcher" style="display:none;" id="callBtn">Call</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="home" class="page active" aria-labelledby="homeTitle">
+    <section class="hero wrap">
+      <div class="card" aria-label="Study introduction video">
+        <div class="video-shell">
+          <video controls preload="auto" poster="hero-poster.jpg" aria-describedby="videoCaption" playsinline webkit-playsinline>
+            <source src="introductionvideo.mp4" type="video/mp4" />
+            Sorry, your browser doesn’t support embedded videos.
+          </video>
+        </div>
+        <p id="videoCaption" class="video-caption">Thank you!</p>
+      </div>
+      <div class="spacer"></div>
+      <div class="wrap" style="display:flex; justify-content:center; margin-top:12px; padding: 0;">
+        <div class="cta-row" style="justify-content:center;">
+          <a class="btn primary" href="join_qualtrics.html" aria-label="Join the study (button under video)">Join the Study</a>
+          <a class="btn" href="#details" aria-label="Scroll to details">See Details</a>
+        </div>
+      </div>
+    </section>
+
+    <div class="wrap centered-narrow">
+      <div class="card bio-card" aria-label="Key details">
+        <h2 id="homeTitle">Expected Start Date</h2>
+        <ul><li>Multiple start dates, with the first at the beginning of April 2026</li></ul>
+        <h2>Duration</h2>
+        <ul><li>4 weeks</li></ul>
+        <h2>What to Expect</h2>
+        <ul>
+          <li>Daily conversation with a voice-based chatbot or recording a daily audio diary (we will assign which one), min. 5 minutes.</li>
+          <li>Short survey and cognitive tasks (around 15 minutes) at the start and end of the study (week 1 and week 4), and two additional 5–10 minute surveys in between.</li>
+        </ul>
+
+        <h2 style="margin-top:12px;">Ethics & Consent</h2>
+        <p class="lead">This research has been <strong>reviewed and approved</strong> by the Capilano University Research Ethics Board on <strong>March 2nd, 2026</strong>. Participation is voluntary and you may withdraw at any time without penalty.</p>
+        <div class="cta-row" style="margin-top:6px;">
+          <a class="btn" href="flyer.pdf" download="flyer.pdf" id="piBtn" aria-label="Download the participant information sheet (PDF)">Participant Information (PDF)</a>
+        </div>
+      </div>
+    </div>
+
+    <section id="details" class="wrap centered-narrow" aria-labelledby="aboutTitle">
+      <article class="card bio-card">
+        <h1 id="aboutTitle">About the Study</h1>
+        <ul>
+          <li>Research Supervisor: Dr. Lesley Schimanski</li>
+          <li>Research Focus: impact of technological talk intervention</li>
+          <li>Study purpose: test how brief, daily audio diaries or voice chatbot interaction can impact a population of adults 65+</li>
+          <li>Time commitment: minimum of <strong>5 minutes/day</strong> for <strong>4 weeks</strong> and ~<strong>10-15 minutes</strong> each week (4×) for <strong>surveys</strong> and <strong>tasks</strong></li>
+          <li>Eligibility: <strong>English</strong> speaking Canadian or US adults <strong>65+</strong> who live <strong>alone</strong> with access to a <strong>smartphone or tablet</strong> and <strong>internet</strong></li>
+          <li>Compensation: <strong>Completion Certificate</strong></li>
+          <li>Privacy: participation is <strong>voluntary</strong>; you can <strong>withdraw anytime</strong> up until completing the last survey (after which your survey data will be anonymized); talk data (voice-based chatbot or voice recorder data) stored on <strong>US servers</strong>, which means this data <strong>cannot</strong> be garantueed to be private; survey data stored on <strong>Canadian servers</strong></li>
+          <li>Contact: <a href="mailto:nicolaskoch@my.capilanou.ca">nicolaskoch@my.capilanou.ca</a> · <a href="tel:+12368084099">(236)808-4099</a></li>
+        </ul>
+
+        <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap; justify-content:center;">
+          <a class="btn primary" href="join_qualtrics.html" aria-label="Join the Study from About section">Join the Study</a>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <section class="team-strip wrap" aria-label="Researcher and Supervisor">
+    <div class="team-row">
+      <div class="person" aria-label="Researcher profile">
+        <img class="headshot" src="headshot.jpg" alt="Photo of researcher Nicolas M. Koch" loading="lazy" decoding="async">
+        <h3>The Researcher: Nicolas M. Koch</h3>
+        <p>Honours B.A. Psychology student at <strong>Capilano University</strong>.</p>
+      </div>
+
+      <div class="person" aria-label="Supervisor profile">
+        <img class="headshot" src="supervisor.jpg" alt="Photo of research supervisor Dr. Lesley Schimanski" loading="lazy" decoding="async">
+        <h3>Research Supervisor: Dr. Lesley Schimanski</h3>
+        <p>Supervising the Technological Talk Impact study at CapU.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- DATA DURING STUDY TEXTBOX -->
+  <section class="wrap centered-narrow" aria-labelledby="dataDuringStudyTitle">
+    <div class="card bio-card">
+      <h2 id="dataDuringStudyTitle">Regarding your data during this study</h2>
+      <p class="lead">Here is an overview of what happens to your talk data during the study:</p>
+      <ul>
+        <li>
+          <strong>Voice Recorder daily diaries</strong> - What you talk about with the Voice Recorder will be stored on your phone or tablet. The research team will not have insight into this audio. After the study, you are welcome to delete this data if you like, or you can keep it.
+        </li>
+        <li>
+          <strong>Voice-based chatbot talks</strong> - What you talk about with the voice-based chatbot will eventually be transcribed into text by the app, and stored on the companies (OpenAI) servers in the US, at least until 30 days after you either delete the chat, or delete the account (we will provide a guide on how to do it). The research team will not have insight or control over this data. Further, the data may be used by OpenAI to train their models, unless you opt-out (the research team will provide you with a detailed step-by-step guide on how to opt-out).
+        </li>
+        <li>
+          <strong>Location of servers &amp; privacy laws</strong> - Any data associated with the voice-based chatbot talk (and, depending on your device and backup settings, possibly your daily diary recordings) that is stored on computer servers located outside Canada is not protected by Canadian privacy legislation, and may be accessed by the U.S. government since it is subject to the U.S. Patriot Act (see
+          <a href="https://openai.com/policies/row-privacy-policy" target="_blank" rel="noopener noreferrer">OpenAI’s Privacy Policy</a>). Further, withdrawal from the study can not garantuee deletion of your voice-based chatbot talk data!
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="wrap" style="display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;">
+      <div class="fine">© <span id="y"></span> CapU Honours Study • Built for outreach & recruitment</div>
+      <div class="badge" aria-label="Accessibility note">Accessible: captions ready · keyboard friendly</div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    document.querySelectorAll('#home a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const href = a.getAttribute('href');
+        if (href && href.length > 1) {
+          const el = document.querySelector(href);
+          if (el) { e.preventDefault(); el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+        }
+      });
+    });
+
+    const callBtn = document.getElementById('callBtn');
+    const isCoarse = matchMedia('(hover: none) and (pointer: coarse)').matches;
+    if (isCoarse) callBtn.style.display = 'inline-flex';
+
+    (function(){
+      const LS_KEY = 'largeText';
+      function setScale(on){
+        try{ localStorage.setItem(LS_KEY, on?'1':'0'); }catch(e){}
+        document.documentElement.style.setProperty('--fontScale', on? '1.18' : '1');
+        const b=document.getElementById('textToggle'); if(b){ b.setAttribute('aria-pressed', on?'true':'false'); }
+      }
+      let initial=false; try{ initial = (localStorage.getItem(LS_KEY)==='1'); }catch(e){}
+      setScale(initial);
+      const nav=document.querySelector('header nav');
+      if(nav && !document.getElementById('textToggle')){
+        const btn=document.createElement('button');
+        btn.className='btn'; btn.type='button'; btn.id='textToggle';
+        btn.setAttribute('aria-label','Toggle large text'); btn.setAttribute('aria-pressed', initial?'true':'false');
+        btn.textContent='A\u00A0A';
+        nav.appendChild(btn);
+        btn.addEventListener('click', function(){ setScale(!(localStorage.getItem(LS_KEY)==='1')); });
+      }
+    })();
+
+    (function(){
+      const btn = document.getElementById('piBtn');
+      if (!btn) return;
+      const filePath = 'flyer.pdf';
+      const fileName = 'CapU-Honours-Study-Flyer.pdf';
+      btn.addEventListener('click', async function(e){
+        if ('download' in HTMLAnchorElement.prototype) return;
+        e.preventDefault();
+        try {
+          const res = await fetch(filePath, { cache: 'no-store' });
+          if (!res.ok) throw new Error('Network response was not ok');
+          const blob = await res.blob();
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url; a.download = fileName;
+          document.body.appendChild(a); a.click(); a.remove();
+          setTimeout(() => URL.revokeObjectURL(url), 2000);
+        } catch {
+          window.location.href = filePath;
+        }
+      });
+    })();
+
+    (function () {
+      const shells = document.querySelectorAll('.video-shell');
+      shells.forEach(shell => {
+        const video = shell.querySelector('video');
+        if (!video) return;
+
+        if (video.poster) {
+          shell.style.backgroundImage = 'url("' + video.poster + '")';
+        }
+
+        const updateOverlay = () => {
+          if (video.paused) {
+            shell.classList.remove('is-playing');
+          } else {
+            shell.classList.add('is-playing');
+          }
+        };
+
+        video.addEventListener('play', updateOverlay);
+        video.addEventListener('pause', updateOverlay);
+        video.addEventListener('ended', updateOverlay);
+
+        updateOverlay();
+      });
+    })();
+  </script>
+</body>
+</html>
