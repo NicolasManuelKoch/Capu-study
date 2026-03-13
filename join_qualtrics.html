@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Join the Study – Honours Study</title>
+  <meta name="description" content="Provide contact info and consent to be contacted about participating in the Honours study." />
+  <meta name="theme-color" content="#f6f8fc" />
+  <style>
+    :root {
+      --bg: #f6f8fc;
+      --card: #ffffff;
+      --text: #1c2430;
+      --muted: #5b6678;
+      --accent: #1f5eff;
+      --accent-2: #1fa3a3;
+      --radius: 18px;
+      --shadow: 0 10px 28px rgba(30, 50, 90, 0.08);
+      --focus: 3px solid rgba(31, 94, 255, 0.35);
+      --maxw: 820px;
+      --padX: clamp(14px, 3.5vw, 24px);
+      --padY: clamp(12px, 2.8vw, 18px);
+      --btn-min: 44px;
+      --fontScale: 1;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { height: 100%; -webkit-text-size-adjust: 100%; }
+    body {
+      margin:0;
+      height:100%;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans";
+      font-size: calc(clamp(16px, 0.9rem + 0.2vw, 18px) * var(--fontScale));
+      line-height:1.6;
+      color:var(--text);
+      background:
+        radial-gradient(1200px 800px at 10% 0%, #eef4ff 0%, #f6f8fc 55%),
+        linear-gradient(180deg, #f9fbff 0%, #f4f7fb 100%);
+    }
+    .wrap { max-width: var(--maxw); margin: 0 auto; padding: var(--padY) var(--padX); }
+    header {
+      position: sticky;
+      top:0;
+      z-index:10;
+      backdrop-filter: saturate(140%) blur(8px);
+      background: rgba(255, 255, 255, 0.88);
+      border-bottom: 1px solid rgba(28, 36, 48, 0.08);
+    }
+    .brand { display:flex; align-items:center; gap:10px; font-weight:700; font-size: clamp(1rem, 0.95rem + 0.7vw, 1.15rem); }
+    .brand .dot {
+      width:10px;
+      height:10px;
+      border-radius:50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow: 0 0 0 4px rgba(31, 94, 255, 0.12);
+    }
+    .card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(248,250,253,0.98));
+      border: 1px solid rgba(28, 36, 48, 0.08);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .content { padding: clamp(16px, 3vw, 22px); }
+    .btn {
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      padding:12px 16px;
+      border-radius:999px;
+      border:1px solid rgba(28, 36, 48, 0.12);
+      background: #ffffff;
+      color: var(--text);
+      cursor:pointer;
+      box-shadow: var(--shadow);
+      min-height: var(--btn-min);
+      text-decoration: none;
+    }
+    .btn.primary {
+      background: linear-gradient(135deg, #2a67ff, #1f8cff);
+      color:#ffffff;
+      border:none;
+      font-weight:700;
+    }
+    .row { display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
+    h1 { font-size: clamp(1.3rem, 1.05rem + 1.8vw, 1.8rem); margin: 0 0 10px; }
+    p.note { color: var(--muted); margin: 0 0 14px; }
+
+    /* Qualtrics embed */
+    .q-shell { display:grid; gap:10px; }
+    .q-frame {
+      width:100%;
+      border:0;
+      border-radius: 12px;
+      background:#edf3fb;
+      min-height: 1200px;
+    }
+    .status { min-height:1.25em; color: var(--muted); }
+    footer {
+      border-top: 1px solid rgba(28, 36, 48, 0.08);
+      color: var(--muted);
+      padding: 18px var(--padX) 56px;
+    }
+
+    @supports (padding: max(0px)) {
+      body   { padding-bottom: max(0px, env(safe-area-inset-bottom)); }
+      header { padding-top:    max(0px, env(safe-area-inset-top)); }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap" style="display:flex; align-items:center; justify-content:space-between; gap:12px;">
+      <div class="brand"><div class="dot" aria-hidden="true"></div><div>Honours Study</div></div>
+      <nav class="row">
+        <a class="btn" href="index.html">Back to Study Page</a>
+        <!-- Large Text toggle injected below -->
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="card">
+      <div class="content">
+        <h1>Join the Study</h1>
+        <p class="note">The secure sign-up form is embedded below. If your device has trouble loading it, use the “Open in new tab” button.</p>
+
+        <div class="q-shell">
+          <a class="btn" id="openQualtrics" target="_blank" rel="noopener">Open form in a new tab</a>
+
+          <iframe
+            id="qualtricsFrame"
+            class="q-frame"
+            title="Qualtrics sign-up form"
+            loading="eager"
+            referrerpolicy="no-referrer-when-downgrade"
+            allow="clipboard-write *; fullscreen *"
+          ></iframe>
+
+          <div id="qStatus" class="status" aria-live="polite">Loading form…</div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap">© <span id="y"></span> CapU Honours Study</div>
+  </footer>
+
+  <script>
+    // ---------- CONSTANT: your live Qualtrics Anonymous Link ----------
+    const QUALTRICS_URL = "https://capilanopsych.qualtrics.com/jfe/form/SV_ahi16lchVx9bVwq";
+
+    // Set year
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    // Large Text toggle (persists)
+    (function(){
+      const LS_KEY='largeText';
+      function setScale(on){
+        try{ localStorage.setItem(LS_KEY, on?'1':'0'); }catch(e){}
+        document.documentElement.style.setProperty('--fontScale', on? '1.18' : '1');
+        const b=document.getElementById('textToggle'); if(b){ b.setAttribute('aria-pressed', on?'true':'false'); }
+      }
+      let initial=false; try{ initial = (localStorage.getItem(LS_KEY)==='1'); }catch(e){}
+      setScale(initial);
+      const nav=document.querySelector('header nav');
+      if(nav && !document.getElementById('textToggle')){
+        const btn=document.createElement('button');
+        btn.className='btn'; btn.type='button'; btn.id='textToggle';
+        btn.setAttribute('aria-label','Toggle large text'); btn.setAttribute('aria-pressed', initial?'true':'false');
+        btn.textContent='A\u00A0A';
+        nav.appendChild(btn);
+        btn.addEventListener('click', function(){ setScale(!(localStorage.getItem(LS_KEY)==='1')); });
+      }
+    })();
+
+    // Build Qualtrics URL with any page query params (optional, handy for UTM/pid)
+    function buildQualtricsURL() {
+      const params = new URLSearchParams(window.location.search);
+      // Example: params.set('study','honours2025');
+      try { params.set('referer', document.referrer || 'direct'); } catch(e){}
+      const qs = params.toString();
+      return qs ? `${QUALTRICS_URL}?${qs}` : QUALTRICS_URL;
+    }
+
+    // Apply URLs to iframe + open button and handle status text
+    (function(){
+      const frame = document.getElementById('qualtricsFrame');
+      const openBtn = document.getElementById('openQualtrics');
+      const status = document.getElementById('qStatus');
+
+      const fullURL = buildQualtricsURL();
+      if (frame) frame.src = fullURL;
+      if (openBtn) openBtn.href = fullURL;
+
+      let hinted = false;
+      function setStatus(t){ if(status){ status.textContent = t; } }
+
+      frame.addEventListener('load', () => setStatus('Form loaded. If it doesn’t appear, use “Open in new tab”.'));
+
+      // If embedding is blocked by security settings, show a helpful hint after 4s
+      setTimeout(() => {
+        if (!hinted) {
+          setStatus('If the form is blocked by a browser or our security settings, click “Open in new tab”.');
+          hinted = true;
+        }
+      }, 4000);
+    })();
+  </script>
+</body>
+</html>
