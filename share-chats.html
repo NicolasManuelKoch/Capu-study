@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>How to share your ChatGPT chats – Honours Study</title>
-  <meta name="description" content="Step-by-step instructions to select and share four ChatGPT conversations (one from each week of the study) with the research team." />
+  <meta name="description" content="Step-by-step instructions to select and share two ChatGPT conversations (one from each week of the 2-week study) with the research team." />
   <meta name="theme-color" content="#0b1020" />
   <meta name="robots" content="noindex, nofollow" />
   <link rel="preload" as="image" href="share-chats-poster.jpg" />
@@ -114,11 +114,11 @@
 
   <main class="wrap" aria-labelledby="pageTitle">
     <div class="card bio-card">
-      <h1 id="pageTitle" style="margin:6px 0;">How to share four ChatGPT chats with the researchers</h1>
+      <h1 id="pageTitle" style="margin:6px 0;">How to share two ChatGPT chats with the researchers</h1>
 
       <p style="margin:0 0 10px; color:var(--muted); font-size:0.98rem;">
-        During the study, we ask you to share <strong>4 ChatGPT conversations</strong> with us, 
-        <strong>one from each week</strong> of the 4-week study.  
+        During the study, we ask you to share <strong>2 ChatGPT conversations</strong> with us, 
+        <strong>one from each week</strong> of the 2-week study.  
         Please <strong>do not include private details</strong> (for example, names, addresses, or account numbers).
       </p>
 
@@ -154,14 +154,6 @@
             <span class="random-label">Week 2 (Days 8–14)</span>
             <span class="random-value" id="dayWeek2">–</span>
           </div>
-          <div class="random-box">
-            <span class="random-label">Week 3 (Days 15–21)</span>
-            <span class="random-value" id="dayWeek3">–</span>
-          </div>
-          <div class="random-box">
-            <span class="random-label">Week 4 (Days 22–28)</span>
-            <span class="random-value" id="dayWeek4">–</span>
-          </div>
         </div>
 
         <p class="video-caption" style="margin-top:10px; text-align:left;">
@@ -170,9 +162,9 @@
         </p>
       </div>
 
-      <!-- Quick steps: choosing the 4 chats, using the random days -->
+      <!-- Quick steps: choosing the 2 chats, using the random days -->
       <div class="card" style="margin-top:14px; padding:14px;">
-        <h2 style="margin:6px 0 8px;">Part 1 – Using the numbers to choose your four chats</h2>
+        <h2 style="margin:6px 0 8px;">Part 1 – Using the numbers to choose your two chats</h2>
         <ol style="margin:0; padding-left:18px;">
           <li>Open the <strong>ChatGPT app</strong> on your phone or tablet.</li>
           <li>Go to your list of <strong>recent chats</strong> (your history).</li>
@@ -187,17 +179,17 @@
             </ul>
           </li>
 
-          <li><strong>Repeat for Week 2, Week 3, and Week 4</strong>:
+          <li><strong>For Week 2</strong>:
             <ul style="margin:4px 0 6px 0; padding-left:18px;">
-              <li>Use the random day shown for that week (Week 2: Days 8–14, Week 3: Days 15–21, Week 4: Days 22–28).</li>
-              <li>Scroll to the chats in that week.</li>
+              <li>Look at the number shown for <strong>Week 2</strong> above (Days 8–14).</li>
+              <li>Scroll to the chats from the <strong>second week</strong> of the study.</li>
               <li>Count through your chats for that week until you reach the number, and select that chat.  
                   If there are fewer chats than the number, select the last chat in that week.</li>
             </ul>
           </li>
 
-          <li>In the end, you will have <strong>4 chats</strong>:
-            one from Week 1, one from Week 2, one from Week 3, and one from Week 4.</li>
+          <li>In the end, you will have <strong>2 chats</strong>:
+            one from Week 1 and one from Week 2.</li>
         </ol>
       </div>
 
@@ -205,7 +197,7 @@
       <div class="card" style="margin-top:14px; padding:14px;">
         <h2 style="margin:6px 0 8px;">Part 2 – How to share each chat (share the link)</h2>
         <p style="margin:0 0 8px; color:var(--muted); font-size:0.95rem;">
-          For each of the 4 chats you chose, you can send us a <strong>link</strong> to the conversation.
+          For each of the 2 chats you chose, you can send us a <strong>link</strong> to the conversation.
         </p>
 
         <h3 style="margin:8px 0 4px; font-size:1rem;">On iPhone / iPad</h3>
@@ -225,12 +217,12 @@
         </ol>
 
         <p class="video-caption" style="margin-top:10px; text-align:left;">
-          Repeat these steps for each of the <strong>4 chats</strong> (Week 1, Week 2, Week 3, and Week 4).
+          Repeat these steps for each of the <strong>2 chats</strong> (Week 1 and Week 2).
         </p>
 
-        <h3 style="margin:12px 0 6px; font-size:1rem;">Step 3 – Submit your four links (secure survey below)</h3>
+        <h3 style="margin:12px 0 6px; font-size:1rem;">Step 3 – Submit your two links (secure survey below)</h3>
         <p style="margin:0 0 10px; color:var(--muted); font-size:0.95rem;">
-          Please paste your four links into the secure survey form below (Week 1–Week 4), then submit.
+          Please paste your two links into the secure survey form below (Week 1 and Week 2), then submit.
         </p>
 
         <!-- Embedded Qualtrics survey -->
@@ -287,20 +279,13 @@
     const generateBtn = document.getElementById('generateDaysBtn');
     const dayWeek1El = document.getElementById('dayWeek1');
     const dayWeek2El = document.getElementById('dayWeek2');
-    const dayWeek3El = document.getElementById('dayWeek3');
-    const dayWeek4El = document.getElementById('dayWeek4');
 
     if (generateBtn) {
       generateBtn.addEventListener('click', function () {
         const d1 = randomInt(1, 7);    // Week 1: days 1–7
         const d2 = randomInt(8, 14);   // Week 2: days 8–14
-        const d3 = randomInt(15, 21);  // Week 3: days 15–21
-        const d4 = randomInt(22, 28);  // Week 4: days 22–28
-
         dayWeek1El.textContent = d1;
         dayWeek2El.textContent = d2;
-        dayWeek3El.textContent = d3;
-        dayWeek4El.textContent = d4;
 
         // Disable button after first generation
         generateBtn.disabled = true;
